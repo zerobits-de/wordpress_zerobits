@@ -8,8 +8,10 @@
 - **Timber is mandatory.** Twig renders presentation (`templates/`, `views/`); PHP prepares data
   (`src/`). Do not put HTML in PHP and do not put business logic in Twig.
 - **All site texts live in the repo** (`theme/content/`); only blog articles live in WordPress.
-  See [`docs/content.md`](docs/content.md).
+  See [`.claude/rules/content.md`](.claude/rules/content.md).
 - Local development runs in Docker (`make up`, `make install`) on <http://localhost:8093>.
+- **The repository is public.** Everything committed, and every branch name, commit message and
+  pull request, is visible to anyone.
 
 ## Rules
 
@@ -33,7 +35,10 @@
 8. **Escape in Twig** (`|e`, `|e('html_attr')`, `|esc_url`). Timber does not autoescape. Legal HTML
    and `post.content` are output as is.
 9. Do not invent legal data, client names, figures or testimonials.
-10. Do not commit secrets. Run `make lint` and `make test` after significant changes.
+10. Do not commit secrets, credentials, server addresses or internal information about clients: the
+    repository is public. Run `make lint` and `make test` after significant changes.
+11. Every change goes through a Jira ticket, a branch and a pull request
+    ([`.claude/rules/workflow.md`](.claude/rules/workflow.md)).
 
 ## Commands
 
@@ -43,3 +48,12 @@
 | Lint (incl. translations) / tests | `make lint`, `make test` |
 | WP-CLI | `make wp ARGS="post list"` |
 | Release ZIP | `make build` |
+
+## More guidance
+
+Detailed rules live in `.claude/rules/`:
+
+- [`workflow.md`](.claude/rules/workflow.md) – Jira ticket → branch → PR flow and the `feat:`/`fix:` naming scheme
+- [`architecture.md`](.claude/rules/architecture.md) – request flow, content model, feature classes, front end, visitor language
+- [`content.md`](.claude/rules/content.md) – editing texts, lists, images, pages and blog articles
+- [`deployment.md`](.claude/rules/deployment.md) – CI, releases, deploying and updating the theme

@@ -1,3 +1,9 @@
+---
+paths:
+  - "theme/content/**"
+  - "theme/assets/images/**"
+---
+
 # Editing content
 
 All texts of the site are files in `theme/content/`. A change is a commit; CI checks it and a
