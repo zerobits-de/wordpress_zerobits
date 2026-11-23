@@ -491,6 +491,7 @@
   "footer": {
     "social": "Zerobits on social networks",
     "legal": "Legal",
+    "source": "Project source",
     "networks": {
       "linkedin": "LinkedIn",
       "github": "GitHub",
