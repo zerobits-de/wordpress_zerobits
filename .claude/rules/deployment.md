@@ -18,6 +18,8 @@ paths:
 2. **docker**: starts the stack, runs `bin/wp-install.sh` and smoke-tests every route in both
    languages, the language separation of the blogs and the 301 redirects (including the addresses
    of the former Elementor site).
+   `seed/` is not in the repository, so the job imports the two fixture articles in
+   `.github/fixtures/posts/` instead; their slugs are the ones the smoke test asks for.
 3. **build**: builds `zb-theme.zip` and checks that it contains `vendor/` and both language files.
 
 Since all texts are in the theme, **a content change is a code change**: commit, CI, release.

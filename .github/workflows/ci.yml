@@ -72,8 +72,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # seed/ is not in the repository; the smoke test runs against two fixture articles.
       - name: Prepare environment
-        run: cp .env.example .env
+        run: |
+          cp .env.example .env
+          mkdir -p seed/posts
+          cp .github/fixtures/posts/*.html seed/posts/
 
       - name: Validate compose file
         run: docker compose config -q
@@ -127,7 +131,7 @@ jobs:
             [ "$got" = "301 $B$2" ] || { echo "FAIL redirect $1: $got"; exit 1; }
             echo "ok  $1 -> $2"
           }
-          # Both languages (slugs from theme/content/*.json and seed/posts/).
+          # Both languages (slugs from theme/content/*.json and .github/fixtures/posts/).
           check $B/                 200 'lang="en-US"'
           check $B/                 200 'class="hero'
           check $B/                 200 'id="portfolio"'
