@@ -8,7 +8,8 @@
     "name": "Zerobits",
     "logo": "images/logo.svg",
     "logo_width": 180,
-    "logo_height": 37
+    "logo_height": 37,
+    "source_url": "https://github.com/zerobits-de/wordpress_zerobits"
   },
   "contact": {
     "email": "info@zerobits.de",

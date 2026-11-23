@@ -21,7 +21,7 @@ use ZB\Theme\Routing\Urls;
  *
  * - request     {route, lang}
  * - t           every text of the current language (content/{lang}.json)
- * - brand       name, logo, contact data, social links (content/site.json)
+ * - brand       name, logo, contact data, social links, source repository (content/site.json)
  * - home_url    homepage of the current language
  * - blog_url    blog of the current language
  * - contact_url contact section (an anchor on the homepage itself)
@@ -105,6 +105,7 @@ final class Context implements Registrable {
 			'whatsapp_url'  => (string) ( array_column( $social, 'url', 'id' )['whatsapp'] ?? '' ),
 			'address'       => trim( Store::get( $site, 'contact.street' ) . ', ' . Store::get( $site, 'contact.postal_code' ) . ' ' . Store::get( $site, 'contact.city' ), ', ' ),
 			'social'        => $social,
+			'source_url'    => (string) Store::get( $site, 'brand.source_url' ),
 		);
 	}
 
