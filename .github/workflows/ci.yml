@@ -139,12 +139,15 @@ jobs:
           check $B/                 200 'class="carousel'
           check $B/de/              200 'lang="de-DE"'
           check $B/de/              200 'Schluss mit Routinearbeit.'
-          check $B/services/        200 'id="automation"'
-          check $B/services/        200 'hreflang="de" href="http://localhost:8093/de/services/"'
-          check $B/de/services/     200 'Werkzeuge für'
-          check $B/                 200 'href="http://localhost:8093/services/#operations"'
-          check $B/odoo-partner/    200 'Zerobits is an Odoo Partner'
-          check $B/de/odoo-partner/ 200 'Zerobits ist Odoo Partner'
+          check $B/                 200 'href="http://localhost:8093/services/automation/"'
+          check $B/                 200 'href="http://localhost:8093/portfolio/foo-kaz/"'
+          check $B/services/automation/ 200 'class="section service-rows'
+          check $B/services/automation/ 200 'hreflang="de" href="http://localhost:8093/de/services/automatisierung/"'
+          check $B/de/services/automatisierung/ 200 'id="tools"'
+          check $B/services/cloud/    200 'id="odoo"'
+          check $B/de/services/cloud/ 200 'id="odoo"'
+          check $B/portfolio/foo-kaz/ 200 'class="project project--page'
+          check $B/de/portfolio/linguu/ 200 'hreflang="en" href="http://localhost:8093/portfolio/linguu/"'
           check $B/blog/            200 'why-we-use-claude-code-at-zerobits'
           check $B/de/blog/         200 'warum-wir-claude-code-verwenden'
           check $B/blog/why-we-use-claude-code-at-zerobits/ 200 'class="article'
@@ -177,6 +180,12 @@ jobs:
           got=$(curl -s -o /dev/null -w '%{http_code}' -H 'Accept-Language: de' $B/blog/)
           [ "$got" = "200" ] || { echo "FAIL /blog/ must not negotiate: $got"; exit 1; }
           echo "ok  only the homepage negotiates"
+          # The former overview pages are sections now.
+          redirect /services/ '/#services'
+          redirect /de/services/ '/de/#services'
+          redirect /portfolio/ '/#portfolio'
+          redirect /odoo-partner/ '/services/cloud/#odoo'
+          redirect /de/odoo-partner/ '/de/services/cloud/#odoo'
           # Articles always live under their language.
           redirect /blog/warum-wir-claude-code-verwenden/ /de/blog/warum-wir-claude-code-verwenden/
           redirect /category/uncategorized/ /blog/
