@@ -28,3 +28,7 @@ Thumbs.db
 
 # Seed content (local only)
 seed/
+
+# Claude Code (local only)
+.claude/settings.local.json
+.claude/worktrees/

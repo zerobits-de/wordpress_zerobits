@@ -1,3 +1,12 @@
+---
+paths:
+  - ".github/**"
+  - "bin/**"
+  - "docker/**"
+  - "docker-compose.yml"
+  - "Makefile"
+---
+
 # Building and deploying
 
 ## CI (every push and pull request)
