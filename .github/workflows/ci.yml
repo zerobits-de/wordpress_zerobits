@@ -93,7 +93,8 @@ jobs:
           done
           echo "WordPress did not start"; exit 1
 
-      - name: Install WordPress and blog articles
+      # seed/ is not in the repository: the site is tested without blog articles.
+      - name: Install WordPress
         run: docker compose exec -T wordpress bash /opt/zb/bin/wp-install.sh
 
       - name: Smoke test pages
@@ -127,35 +128,29 @@ jobs:
             [ "$got" = "301 $B$2" ] || { echo "FAIL redirect $1: $got"; exit 1; }
             echo "ok  $1 -> $2"
           }
-          # Both languages (slugs from theme/content/*.json and seed/posts/).
+          # Both languages (slugs from theme/content/*.json).
           check $B/                 200 'lang="en-US"'
           check $B/                 200 'class="hero'
           check $B/                 200 'id="portfolio"'
           check $B/                 200 'hreflang="de"'
-          check $B/                 200 'class="carousel'
           check $B/de/              200 'lang="de-DE"'
           check $B/de/              200 'Schluss mit Routinearbeit.'
-          check $B/services/        200 'id="automation"'
-          check $B/services/        200 'hreflang="de" href="http://localhost:8093/de/services/"'
-          check $B/de/services/     200 'Werkzeuge für'
-          check $B/                 200 'href="http://localhost:8093/services/#operations"'
-          check $B/odoo-partner/    200 'Zerobits is an Odoo Partner'
-          check $B/de/odoo-partner/ 200 'Zerobits ist Odoo Partner'
-          check $B/blog/            200 'why-we-use-claude-code-at-zerobits'
-          check $B/de/blog/         200 'warum-wir-claude-code-verwenden'
-          check $B/blog/why-we-use-claude-code-at-zerobits/ 200 'class="article'
-          check $B/de/blog/warum-wir-claude-code-verwenden/ 200 'class="author'
+          check $B/                 200 'href="http://localhost:8093/services/automation/"'
+          check $B/                 200 'href="http://localhost:8093/portfolio/foo-kaz/"'
+          check $B/services/automation/ 200 'class="section service-rows'
+          check $B/services/automation/ 200 'hreflang="de" href="http://localhost:8093/de/services/automatisierung/"'
+          check $B/de/services/automatisierung/ 200 'id="tools"'
+          check $B/services/cloud/    200 'id="odoo"'
+          check $B/de/services/cloud/ 200 'id="odoo"'
+          check $B/portfolio/foo-kaz/ 200 'class="project project--page'
+          check $B/de/portfolio/linguu/ 200 'hreflang="en" href="http://localhost:8093/portfolio/linguu/"'
+          check $B/blog/            200 'class="section blog-list'
+          check $B/de/blog/         200 'lang="de-DE"'
           check $B/impress/         200 'class="section page-text'
           check $B/privacy-policy/  200 'class="section page-text'
           check $B/de/impressum/    200 'class="section page-text'
           check $B/de/datenschutz/  200 'class="section page-text'
           check $B/no-such-page-xyz/ 404 'class="not-found'
-          # Each blog only lists its own language.
-          html=$(curl -s $B/blog/)
-          [[ "$html" != *"warum-wir-claude-code-verwenden"* ]] || { echo "FAIL German article on English blog"; exit 1; }
-          html=$(curl -s $B/de/blog/)
-          [[ "$html" != *"why-we-use-claude-code-at-zerobits"* ]] || { echo "FAIL English article on German blog"; exit 1; }
-          echo "ok  blogs are separated by language"
           # The homepage follows the browser's language; the language switch (cookie) wins.
           negotiate() {
             local got
@@ -173,12 +168,14 @@ jobs:
           got=$(curl -s -o /dev/null -w '%{http_code}' -H 'Accept-Language: de' $B/blog/)
           [ "$got" = "200" ] || { echo "FAIL /blog/ must not negotiate: $got"; exit 1; }
           echo "ok  only the homepage negotiates"
-          # Articles always live under their language.
-          redirect /blog/warum-wir-claude-code-verwenden/ /de/blog/warum-wir-claude-code-verwenden/
+          # The former overview pages are sections now.
+          redirect /services/ '/#services'
+          redirect /de/services/ '/de/#services'
+          redirect /portfolio/ '/#portfolio'
+          redirect /odoo-partner/ '/services/cloud/#odoo'
+          redirect /de/odoo-partner/ '/de/services/cloud/#odoo'
           redirect /category/uncategorized/ /blog/
           # Addresses of the former Elementor/TranslatePress site.
-          redirect /why-we-use-claude-code-at-zerobits/ /blog/why-we-use-claude-code-at-zerobits/
-          redirect /de/warum-wir-claude-code-verwenden/ /de/blog/warum-wir-claude-code-verwenden/
           redirect /impressum/ /de/impressum/
           redirect /de/impress/ /de/impressum/
           redirect /de/privacy-policy/ /de/datenschutz/
