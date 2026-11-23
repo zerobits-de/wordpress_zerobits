@@ -16,8 +16,10 @@ paths:
 1. **validate**: content and translation check (`bin/check-content.php`), composer validate,
    PHP syntax, PHPCS (WordPress), PHPStan level 6, Twig syntax, theme structure.
 2. **docker**: starts the stack, runs `bin/wp-install.sh` and smoke-tests every route in both
-   languages, the language separation of the blogs and the 301 redirects (including the addresses
+   languages and the 301 redirects (including the addresses
    of the former Elementor site).
+   `seed/` is not in the repository, so the job runs without blog articles: the article pages,
+   the carousel and the article redirects are not covered.
 3. **build**: stamps a build version, builds `zb-theme.zip` and checks that it contains `vendor/`
    and both language files.
 4. **deploy** (pushes to `main` only): installs the package on the production server.
