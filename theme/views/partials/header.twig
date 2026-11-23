@@ -1,0 +1,24 @@
+{#
+  Fixed dark site header: logo, navigation and language switch. The language
+  switch is always visible (also on phones). Below 64em the navigation
+  collapses behind a toggle; behaviour lives in assets/js/main.js.
+#}
+<header class="site-header" data-header>
+  <div class="site-header__bar container">
+    {% include 'components/logo.twig' with { brand: brand, url: home_url, class: 'site-header__brand' } only %}
+
+    <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
+      {{ icon('menu', 'icon--open') }}
+      {{ icon('close', 'icon--close') }}
+      <span class="sr-only">{{ t.nav.menu|e }}</span>
+    </button>
+
+    <div class="site-header__menu" id="primary-nav" data-nav>
+      {% include 'components/navigation.twig' with { items: navigation, class: 'primary-nav', aria_label: t.nav.main } only %}
+    </div>
+
+    <div class="site-header__actions">
+      {% include 'components/lang-switch.twig' with { languages: languages, label: t.nav.language } only %}
+    </div>
+  </div>
+</header>

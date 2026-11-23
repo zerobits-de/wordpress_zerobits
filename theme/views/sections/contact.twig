@@ -1,0 +1,57 @@
+{#
+  Contact: ways to get in touch and the map, on a fixed background photo of Koblenz
+  (sections.css). The map is only loaded from Google
+  after a click (main.js), so opening the page sends nothing to Google.
+  Params: contact (SiteContent::contact()), brand, external_label
+#}
+<section class="section section--dark contact" id="contact" aria-labelledby="contact-title">
+  <div class="photo-bg photo-bg--koblenz" aria-hidden="true"></div>
+  <div class="container contact__inner">
+    <div class="contact__body">
+      <h2 class="contact__title" id="contact-title">{{ contact.title|e }}</h2>
+      <p class="contact__text">{{ contact.text|e }}</p>
+      <ul class="contact__list">
+        <li>
+          <a class="contact__link" href="tel:{{ brand.phone|e('html_attr') }}">
+            <img src="{{ asset('images/contact/phone.svg')|esc_url }}" alt="" width="35" height="35" loading="lazy">
+            <span>{{ brand.phone_display|e }}</span>
+          </a>
+        </li>
+        {% if brand.whatsapp_url %}
+          <li>
+            <a class="contact__link" href="{{ brand.whatsapp_url|esc_url }}" target="_blank" rel="noopener">
+              <img src="{{ asset('images/contact/whatsapp.svg')|esc_url }}" alt="" width="35" height="35" loading="lazy">
+              <span>{{ contact.whatsapp|e }}</span>
+              <span class="sr-only">({{ external_label|e }})</span>
+            </a>
+          </li>
+        {% endif %}
+        <li>
+          <a class="contact__link" href="mailto:{{ brand.email|e('html_attr') }}">
+            <img src="{{ asset('images/contact/email.svg')|esc_url }}" alt="" width="35" height="35" loading="lazy">
+            <span>{{ brand.email|e }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="contact__link" href="{{ brand.booking_url|esc_url }}" target="_blank" rel="noopener">
+            <img src="{{ asset('images/contact/schedule.svg')|esc_url }}" alt="" width="35" height="35" loading="lazy">
+            <span>{{ contact.booking|e }}</span>
+            <span class="sr-only">({{ external_label|e }})</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact__map">
+      <h2 class="contact__title">{{ contact.map_title|e }}</h2>
+      <div class="map" data-map data-src="{{ contact.map_embed_url|esc_url }}" data-title="{{ contact.map_frame|e('html_attr') }}">
+        <div class="map__consent">
+          <p class="map__address">{{ brand.address|e }}</p>
+          <p class="map__note">{{ contact.map_note|e }}</p>
+          <button class="btn btn--primary" type="button" data-map-load><span class="btn__label">{{ contact.map_load|e }}</span></button>
+          <a class="map__link" href="{{ contact.map_url|esc_url }}" target="_blank" rel="noopener">{{ contact.map_open|e }} <span class="sr-only">({{ external_label|e }})</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

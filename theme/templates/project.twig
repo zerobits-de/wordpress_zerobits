@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+
+{#
+  Page of one project of the portfolio (ProjectController): its text, the
+  technologies used as chips, the link to the project and its gallery, then the
+  call to action.
+#}
+
+{% block content %}
+  {% set project = page.project %}
+  {% set texts = page.texts %}
+
+  <article class="project project--page project--{{ project.format|e('html_attr') }}" aria-labelledby="project-title">
+    <div class="container project__inner">
+      <div class="project__body">
+        <p class="project__back"><a class="link-more" href="{{ home_url|esc_url }}#portfolio">{{ icon('arrow-left') }} {{ texts.back|e }}</a></p>
+        <p class="project__name">{{ project.name|e }}</p>
+        {% include 'components/dual-title.twig' with { title: project.title, tag: 'h1', id: 'project-title', class: 'project__title' } only %}
+        <p class="project__text">{{ project.text|e }}</p>
+        {% include 'components/chips.twig' with { items: project.tools, label: texts.stack_label, class: 'project__chips' } only %}
+        {% if project.website %}
+          {% include 'components/button.twig' with { label: texts.visit, url: project.website, external: true, external_label: t.external, aria_label: texts.visit ~ ': ' ~ project.name } only %}
+        {% endif %}
+      </div>
+      <div class="project__media">
+        {% include 'components/slider.twig' with {
+          images: project.images,
+          format: project.format,
+          label: texts.gallery|fill({ name: project.name }),
+          previous: texts.previous,
+          next: texts.next,
+          slide: texts.slide
+        } only %}
+      </div>
+    </div>
+  </article>
+
+  {% include 'sections/team.twig' with { team: page.team, contact_url: contact_url } only %}
+{% endblock %}

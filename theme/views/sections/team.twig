@@ -1,0 +1,19 @@
+{#
+  "Get to know us": the founder with a call to action, on a band with a
+  generated background of fine lines (components/lines.twig). Reaching this section
+  shows the note beside the chat button (components/chat-hint.twig).
+  Params: team (texts "team" + image), contact_url
+#}
+<section class="team" aria-labelledby="team-title" data-chat-hint-trigger>
+  {% include 'components/lines.twig' with { class: 'team__lines' } only %}
+  <div class="container team__inner">
+    <div class="team__body">
+      {% include 'components/dual-title.twig' with { title: team.title, id: 'team-title', class: 'section__title' } only %}
+      <p class="team__text">{{ team.text|e }}</p>
+      {% include 'components/button.twig' with { label: team.cta, url: contact_url } only %}
+    </div>
+    <div class="team__media">
+      {% include 'components/image.twig' with { image: team.image, class: 'team__image' } only %}
+    </div>
+  </div>
+</section>

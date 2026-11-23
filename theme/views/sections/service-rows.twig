@@ -1,0 +1,45 @@
+{#
+  The page of a service, scrolling like the services on the homepage. Large
+  screens: the illustration column stays in place (sticky) while the rows
+  scroll past; main.js shows the illustration of the row in view. Small
+  screens: every row has its illustration above it.
+  Params: rows (SiteContent::service() "rows": [{id, title, paragraphs, image, points}],
+          the first one is the service itself and carries the h1),
+          back ({label, url}, link above the rows)
+#}
+<section class="section service-rows" aria-labelledby="row-{{ rows[0].id|e('html_attr') }}-title">
+  <div class="container">
+    <p class="service-rows__back"><a class="link-more" href="{{ back.url|esc_url }}">{{ icon('arrow-left') }} {{ back.label|e }}</a></p>
+
+    <div class="disciplines" data-disciplines>
+      <div class="disciplines__visual" aria-hidden="true">
+        {% for row in rows %}
+          <div class="disciplines__frame{% if loop.first %} is-active{% endif %}" data-discipline-frame>
+            {% include 'components/image.twig' with { image: row.image|merge({ alt: '' }), loading: loop.first ? 'eager' : 'lazy', class: 'disciplines__image disciplines__image--' ~ row.id } only %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="disciplines__list">
+        {% for row in rows %}
+          {% set tag = loop.first ? 'h1' : 'h2' %}
+          <div class="discipline" id="{{ row.id|e('html_attr') }}" data-discipline>
+            <div class="discipline__media">
+              {% include 'components/image.twig' with { image: row.image, loading: loop.first ? 'eager' : 'lazy', class: 'discipline__image' } only %}
+            </div>
+            <div class="discipline__body">
+              <{{ tag }} class="discipline__title" id="row-{{ row.id|e('html_attr') }}-title">{{ row.title|e }}</{{ tag }}>
+              {% for paragraph in row.paragraphs %}
+                <p class="discipline__text">{{ paragraph|e }}</p>
+              {% endfor %}
+              {% if row.points %}
+                <ul class="checklist">
+                  {% for point in row.points %}<li>{{ icon('check') }} {{ point|e }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

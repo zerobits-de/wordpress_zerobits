@@ -1,0 +1,19 @@
+{#
+  Pricing models on the dark band.
+  Params: pricing (texts "pricing" + items)
+#}
+<section class="section section--dark pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <header class="section__head">
+      {% include 'components/dual-title.twig' with { title: pricing.title, id: 'pricing-title', class: 'section__title' } only %}
+    </header>
+    <ul class="pricing__list">
+      {% for item in pricing.items %}
+        <li class="pricing__item">
+          <h3 class="pricing__title">{{ item.title|e }}</h3>
+          <p class="pricing__text">{{ item.text|e }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

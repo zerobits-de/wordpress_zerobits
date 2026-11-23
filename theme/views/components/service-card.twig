@@ -1,0 +1,12 @@
+{#
+  Card of one service: icon, title, short text and the link to its page.
+  Params: service (item of SiteContent::services()), more (button label),
+          more_about (accessible label with {title}), heading (h2|h3, default h3)
+#}
+{% set heading = heading|default('h3') %}
+<li class="service-card">
+  <img class="service-card__icon" src="{{ service.card_icon|esc_url }}" alt="" width="60" height="60" loading="lazy">
+  <{{ heading }} class="service-card__title">{{ service.title|e }}</{{ heading }}>
+  <p class="service-card__text">{{ service.card|e }}</p>
+  {% include 'components/button.twig' with { label: more, url: service.url, class: 'service-card__more', aria_label: more_about|fill({ title: service.title }) } only %}
+</li>

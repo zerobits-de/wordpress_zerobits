@@ -1,0 +1,45 @@
+{#
+  The services on the homepage. Large screens: the illustration column stays in
+  place (sticky) while the texts scroll past; main.js shows the illustration of
+  the service in view. Small screens: every service has its illustration above
+  it. Every service links to its page, which has the full details.
+  Params: services (SiteContent::services())
+#}
+<section class="section services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <header class="section__head">
+      {% include 'components/dual-title.twig' with { title: services.title, id: 'services-title', class: 'section__title' } only %}
+      <p class="section__subtitle">{{ services.subtitle|e }}</p>
+      <p class="section__intro">{{ services.text|e }}</p>
+    </header>
+
+    <div class="disciplines" data-disciplines>
+      <div class="disciplines__visual" aria-hidden="true">
+        {% for service in services.items %}
+          <div class="disciplines__frame{% if loop.first %} is-active{% endif %}" data-discipline-frame>
+            {% include 'components/image.twig' with { image: service.image|merge({ alt: '' }), class: 'disciplines__image' } only %}
+          </div>
+        {% endfor %}
+      </div>
+      <ol class="disciplines__list">
+        {% for service in services.items %}
+          <li class="discipline" id="service-{{ service.id|e('html_attr') }}" data-discipline>
+            <a class="discipline__media" href="{{ service.url|esc_url }}" tabindex="-1" aria-hidden="true">
+              {% include 'components/image.twig' with { image: service.image|merge({ alt: '' }), class: 'discipline__image' } only %}
+            </a>
+            <div class="discipline__body">
+              <h3 class="discipline__title"><a href="{{ service.url|esc_url }}">{{ service.title|e }}</a></h3>
+              <p class="discipline__text">{{ service.card|e }}</p>
+              {% if service.features %}
+                <ul class="checklist">
+                  {% for feature in service.features %}<li>{{ icon('check') }} {{ feature.title|e }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+              {% include 'components/button.twig' with { label: services.more, url: service.url, class: 'discipline__more', aria_label: services.more_about|fill({ title: service.title }) } only %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>

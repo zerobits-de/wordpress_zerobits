@@ -1,0 +1,13 @@
+{#
+  Note beside the chat button: "you can chat with us". Hidden until main.js shows it,
+  once the visitor reaches a [data-chat-hint-trigger] element (the team section).
+  A click on the text opens the chat; the cross dismisses the note for the session.
+  Params: position ("left" | "right"), text, close_label
+#}
+<div class="chat-hint chat-hint--{{ position == 'right' ? 'right' : 'left' }}" data-chat-hint hidden>
+  <button class="chat-hint__open" type="button" data-chat-hint-open>{{ text|e }}</button>
+  <button class="chat-hint__close" type="button" data-chat-hint-close>
+    {{ icon('close') }}
+    <span class="sr-only">{{ close_label|e }}</span>
+  </button>
+</div>

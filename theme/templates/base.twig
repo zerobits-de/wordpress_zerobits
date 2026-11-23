@@ -1,0 +1,40 @@
+{#
+  Base layout. Every page template extends this file.
+
+  Blocks:
+    - header       site header (override to remove/replace)
+    - content      page content (required)
+    - footer       site footer
+#}
+<!doctype html>
+<html {{ function('get_language_attributes') }}>
+<head>
+  <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#292f3a">
+  {{ function('wp_head') }}
+</head>
+<body class="{{ body_class }} {{ body_classes }}">
+  {{ function('wp_body_open') }}
+
+  <a class="skip-link" href="#main">{{ t.nav.skip|e }}</a>
+
+  {% block header %}
+    {% include 'partials/header.twig' %}
+  {% endblock %}
+
+  <main id="main" class="site-main" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+    {% include 'partials/footer.twig' %}
+  {% endblock %}
+
+  {% if chat %}
+    {% include 'components/chat-hint.twig' with { position: chat.position, text: t.chat.hint, close_label: t.chat.close } only %}
+  {% endif %}
+
+  {{ function('wp_footer') }}
+</body>
+</html>

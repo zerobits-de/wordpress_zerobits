@@ -1,0 +1,22 @@
+{#
+  Image slider: a scroll-snap track that works without JavaScript; main.js adds
+  arrows and dots behaviour.
+  Params: images ([{src, alt, width, height}]), format (portrait|landscape),
+          label, previous, next, slide (text with {n} and {total})
+#}
+{% if images %}
+  <div class="slider slider--{{ format|default('landscape')|e('html_attr') }}" data-slider data-slide-label="{{ slide|e('html_attr') }}" role="group" aria-roledescription="carousel" aria-label="{{ label|e('html_attr') }}">
+    <ul class="slider__track" data-slider-track tabindex="0">
+      {% for image in images %}
+        <li class="slider__slide">
+          {% include 'components/image.twig' with { image: image, class: 'slider__image' } only %}
+        </li>
+      {% endfor %}
+    </ul>
+    {% if images|length > 1 %}
+      <button class="slider__arrow slider__arrow--prev" type="button" data-slider-prev aria-label="{{ previous|e('html_attr') }}">{{ icon('chevron-left') }}</button>
+      <button class="slider__arrow slider__arrow--next" type="button" data-slider-next aria-label="{{ next|e('html_attr') }}">{{ icon('chevron-right') }}</button>
+      <div class="slider__dots" data-slider-dots></div>
+    {% endif %}
+  </div>
+{% endif %}

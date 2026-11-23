@@ -1,0 +1,7 @@
+{#
+  Logo linking to the homepage of the current language.
+  Params: brand, url, class (optional)
+#}
+<a class="logo {{ class|default('') }}" href="{{ url|esc_url }}" rel="home">
+  <img src="{{ brand.logo.src|esc_url }}" alt="{{ brand.name|e('html_attr') }}" width="{{ brand.logo.width }}" height="{{ brand.logo.height }}">
+</a>

@@ -1,0 +1,38 @@
+{#
+  Portfolio: projects in alternating rows, each with text, the link to its page
+  (which names the technologies used) and an image slider.
+  Params: portfolio (SiteContent::portfolio())
+#}
+<section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+  <div class="section portfolio__head">
+    <div class="container">
+      <header class="section__head">
+        {% include 'components/dual-title.twig' with { title: portfolio.title, id: 'portfolio-title', class: 'section__title' } only %}
+        <p class="section__intro">{{ portfolio.text|e }}</p>
+      </header>
+    </div>
+  </div>
+
+  {% for project in portfolio.items %}
+    <article class="project project--{{ project.format|e('html_attr') }}{% if loop.index is even %} project--reverse section--soft{% endif %}">
+      <div class="container project__inner">
+        <div class="project__body">
+          <p class="project__name">{{ project.name|e }}</p>
+          {% include 'components/dual-title.twig' with { title: project.title, tag: 'h3', class: 'project__title' } only %}
+          <p class="project__text">{{ project.text|e }}</p>
+          {% include 'components/button.twig' with { label: portfolio.more, url: project.url, aria_label: portfolio.more ~ ': ' ~ project.name } only %}
+        </div>
+        <div class="project__media">
+          {% include 'components/slider.twig' with {
+            images: project.images,
+            format: project.format,
+            label: portfolio.gallery|fill({ name: project.name }),
+            previous: portfolio.previous,
+            next: portfolio.next,
+            slide: portfolio.slide
+          } only %}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>

@@ -1,0 +1,14 @@
+{#
+  "Why choose us": centred paragraphs and the tagline on a fixed background photo (sections.css).
+  Params: about (texts "about")
+#}
+<section class="section section--dark about" id="about-us" aria-labelledby="about-title">
+  <div class="photo-bg photo-bg--code" aria-hidden="true"></div>
+  <div class="container container--text">
+    {% include 'components/dual-title.twig' with { title: about.title, id: 'about-title', class: 'section__title' } only %}
+    {% for paragraph in about.paragraphs %}
+      <p>{{ paragraph|e }}</p>
+    {% endfor %}
+    <p class="about__tagline">{{ about.tagline.before|e }} <span class="about__heart" role="img" aria-label="{{ about.tagline.heart|e('html_attr') }}">❤️</span> {{ about.tagline.after|e }}</p>
+  </div>
+</section>

@@ -1,0 +1,192 @@
+{
+  "languages": [
+    "en",
+    "de"
+  ],
+  "default_language": "en",
+  "brand": {
+    "name": "Zerobits",
+    "logo": "images/logo.svg",
+    "logo_width": 180,
+    "logo_height": 37
+  },
+  "contact": {
+    "email": "info@zerobits.de",
+    "phone": "+4926188868514",
+    "phone_display": "+49 261 88868514",
+    "booking_url": "https://calendly.com/zerobits/60-min-meeting-ms-teams",
+    "street": "Schloßstraße 37",
+    "postal_code": "56068",
+    "city": "Koblenz",
+    "country_code": "DE",
+    "map_embed_url": "https://maps.google.com/maps?q=Schlo%C3%9Fstra%C3%9Fe%2037%2C%2056068%20Koblenz&t=m&z=15&output=embed&iwloc=near",
+    "map_url": "https://www.google.com/maps/search/?api=1&query=Schlo%C3%9Fstra%C3%9Fe%2037%2C%2056068%20Koblenz"
+  },
+  "social": [
+    { "id": "linkedin", "icon": "fa-linkedin", "url": "https://www.linkedin.com/company/zerobits" },
+    { "id": "github", "icon": "fa-github", "url": "https://github.com/olliiiver" },
+    { "id": "whatsapp", "icon": "fa-whatsapp", "url": "https://wa.me/4926188868514" }
+  ],
+  "chat": {
+    "url": "https://cw.zerobits.de",
+    "token": "3iQSSxXtxQiJEt7863V5cJPm",
+    "position": "left"
+  },
+  "hero": {
+    "image": "images/illustrations/hero.svg"
+  },
+  "services": [
+    {
+      "id": "ai",
+      "card_icon": "images/services/ai.svg",
+      "image": "images/illustrations/ai.svg",
+      "features": [
+        { "id": "assistants", "icon": "fa-search" },
+        { "id": "documents", "icon": "fa-copy-regular" },
+        { "id": "agents", "icon": "fa-robot" },
+        { "id": "chat", "icon": "fa-smile-regular" },
+        { "id": "privacy", "icon": "fa-lock" },
+        { "id": "human", "icon": "fa-handshake" }
+      ],
+      "blocks": [
+        {
+          "id": "consulting",
+          "image": "images/illustrations/consulting.svg",
+          "features": [
+            { "id": "listen", "icon": "fa-assistive-listening-systems" },
+            { "id": "understand", "icon": "fa-thumbs-up-regular" },
+            { "id": "spot", "icon": "fa-question" },
+            { "id": "approach", "icon": "fa-search-plus" },
+            { "id": "plan", "icon": "fa-handshake" },
+            { "id": "support", "icon": "fa-people-carry" }
+          ]
+        }
+      ],
+      "tools": ["openai", "claude", "gemini", "mistral", "langchain", "langgraph", "langfuse"]
+    },
+    {
+      "id": "automation",
+      "card_icon": "images/services/automation.svg",
+      "image": "images/illustrations/automation.svg",
+      "features": [
+        { "id": "opportunities", "icon": "fa-search" },
+        { "id": "tool", "icon": "fa-copy-regular" },
+        { "id": "workflow", "icon": "fa-layer-group" },
+        { "id": "ai", "icon": "fa-star-regular" },
+        { "id": "custom", "icon": "fa-code" },
+        { "id": "running", "icon": "fa-sync-alt" }
+      ],
+      "blocks": [
+        {
+          "id": "integration",
+          "image": "images/illustrations/integration.svg",
+          "features": [
+            { "id": "landscape", "icon": "fa-map-regular" },
+            { "id": "apis", "icon": "fa-american-sign-language-interpreting" },
+            { "id": "sync", "icon": "fa-sync" },
+            { "id": "bridges", "icon": "fa-laptop-code" },
+            { "id": "transfer", "icon": "fa-car" },
+            { "id": "always-on", "icon": "fa-power-off" }
+          ]
+        }
+      ],
+      "tools": ["temporal", "typescript", "nestjs", "php", "react", "react-native", "vue"]
+    },
+    {
+      "id": "cloud",
+      "card_icon": "images/services/cloud.svg",
+      "image": "images/illustrations/cloud.svg",
+      "features": [
+        { "id": "fit", "icon": "fa-thumbs-up-regular" },
+        { "id": "setup", "icon": "fa-map-signs" },
+        { "id": "experts", "icon": "fa-smile-regular" },
+        { "id": "custom", "icon": "fa-laptop-code" },
+        { "id": "data", "icon": "fa-database" },
+        { "id": "onboarding", "icon": "fa-people-arrows" }
+      ],
+      "odoo": true,
+      "tools": ["odoo", "python"]
+    },
+    {
+      "id": "devops",
+      "card_icon": "images/services/operations.svg",
+      "image": "images/illustrations/devops.svg",
+      "features": [
+        { "id": "environment", "icon": "fa-network-wired" },
+        { "id": "releases", "icon": "fa-robot" },
+        { "id": "monitoring", "icon": "fa-sticky-note-regular" },
+        { "id": "security", "icon": "fa-lock" },
+        { "id": "costs", "icon": "fa-dollar-sign" },
+        { "id": "maintenance", "icon": "fa-wrench" }
+      ],
+      "tools": ["kubernetes", "aws", "azure", "gcp", "github"]
+    }
+  ],
+  "tools": [
+    { "id": "openai", "name": "OpenAI", "url": "https://openai.com/" },
+    { "id": "claude", "name": "Claude", "url": "https://claude.com/" },
+    { "id": "gemini", "name": "Gemini", "url": "https://ai.google.dev/" },
+    { "id": "mistral", "name": "Mistral", "url": "https://mistral.ai/" },
+    { "id": "langchain", "name": "LangChain", "url": "https://www.langchain.com/" },
+    { "id": "langgraph", "name": "LangGraph", "url": "https://www.langchain.com/langgraph" },
+    { "id": "langfuse", "name": "Langfuse", "url": "https://langfuse.com/" },
+    { "id": "temporal", "name": "Temporal", "url": "https://temporal.io/" },
+    { "id": "typescript", "name": "TypeScript", "url": "https://www.typescriptlang.org/" },
+    { "id": "nestjs", "name": "NestJS", "url": "https://nestjs.com/" },
+    { "id": "python", "name": "Python", "url": "https://www.python.org/" },
+    { "id": "php", "name": "PHP", "url": "https://www.php.net/" },
+    { "id": "react", "name": "React", "url": "https://react.dev/" },
+    { "id": "react-native", "name": "React Native", "url": "https://reactnative.dev/" },
+    { "id": "vue", "name": "Vue", "url": "https://vuejs.org/" },
+    { "id": "odoo", "name": "Odoo", "url": "https://www.odoo.com/" },
+    { "id": "kubernetes", "name": "Kubernetes", "url": "https://kubernetes.io/" },
+    { "id": "aws", "name": "AWS", "url": "https://aws.amazon.com/" },
+    { "id": "azure", "name": "Microsoft Azure", "url": "https://azure.microsoft.com/" },
+    { "id": "gcp", "name": "Google Cloud", "url": "https://cloud.google.com/" },
+    { "id": "github", "name": "GitHub", "url": "https://github.com/" }
+  ],
+  "portfolio": [
+    {
+      "id": "foo-kaz",
+      "url": "https://foo-kaz.com",
+      "format": "portrait",
+      "images": [
+        "images/portfolio/foo-kaz-1.webp",
+        "images/portfolio/foo-kaz-2.webp",
+        "images/portfolio/foo-kaz-3.webp",
+        "images/portfolio/foo-kaz-4.webp"
+      ],
+      "tools": ["temporal", "react", "react-native", "typescript", "nestjs", "kubernetes", "aws", "github", "langchain", "langfuse", "langgraph", "mistral", "claude"]
+    },
+    {
+      "id": "linguu",
+      "url": "https://linguu-learning.de/",
+      "format": "landscape",
+      "images": [
+        "images/portfolio/linguu-1.webp",
+        "images/portfolio/linguu-2.webp",
+        "images/portfolio/linguu-3.webp",
+        "images/portfolio/linguu-4.webp"
+      ],
+      "tools": ["typescript", "vue", "php"]
+    }
+  ],
+  "pricing": [
+    { "id": "hourly" },
+    { "id": "fixed" }
+  ],
+  "team": {
+    "image": "images/photos/oliver-kirst.webp"
+  },
+  "author": {
+    "name": "Oliver Kirst",
+    "image": "images/photos/oliver-kirst-avatar.jpg"
+  },
+  "odoo": {
+    "logo": "images/partners/odoo.webp"
+  },
+  "legal": [
+    "privacy",
+    "imprint"
+  ]
+}

@@ -1,0 +1,13 @@
+{% extends 'base.twig' %}
+
+{# Homepage (HomeController): sections in the order of the page. #}
+
+{% block content %}
+  {% include 'sections/hero.twig' with { hero: home.hero, contact_url: contact_url } only %}
+  {% include 'sections/about.twig' with { about: home.about } only %}
+  {% include 'sections/services.twig' with { services: home.services } only %}
+  {% include 'sections/portfolio.twig' with { portfolio: home.portfolio } only %}
+  {% include 'sections/blog-teaser.twig' with { posts: posts, t: t, blog_url: blog_url } only %}
+  {% include 'sections/team.twig' with { team: home.team, contact_url: contact_url } only %}
+  {% include 'sections/contact.twig' with { contact: home.contact, brand: brand, external_label: t.external } only %}
+{% endblock %}

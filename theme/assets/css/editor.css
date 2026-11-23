@@ -1,0 +1,6 @@
+/* Block editor: article styles as on the front end. Loaded after fonts.css and tokens.css. */
+@import url("base.css");
+@import url("blog.css");
+
+.editor-styles-wrapper { font-family: var(--font-body); color: var(--color-text); }
+.editor-styles-wrapper .wp-block-post-title { font-family: var(--font-display); }

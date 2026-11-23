@@ -1,0 +1,521 @@
+{
+  "lang": {
+    "name": "English",
+    "short": "EN",
+    "html": "en-US",
+    "og_locale": "en_US"
+  },
+  "meta": {
+    "title": "Zerobits | Odoo, ERP, Automation & Software development in Koblenz",
+    "description": "Zerobits - your IT company in Koblenz for Odoo ERP, custom software development, web development, AI solutions and tailor-made business software."
+  },
+  "nav": {
+    "skip": "Skip to content",
+    "menu": "Menu",
+    "main": "Main navigation",
+    "language": "Choose language",
+    "about": "About us",
+    "blog": "Blog",
+    "portfolio": "Portfolio",
+    "references": "References",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": {
+      "lead": "An end to busywork.",
+      "accent": "Time for what really matters."
+    },
+    "text": "Smart, AI-powered automation that handles the repetitive - so your team can focus on what they do best.",
+    "cta": "Book Appointment",
+    "image_alt": "Illustration: a website on a desktop screen and a smartphone"
+  },
+  "about": {
+    "title": {
+      "lead": "Why Choose",
+      "accent": "Us"
+    },
+    "paragraphs": [
+      "We deliver solutions, not just software. Tell us what’s slowing you down and we’ll find the right answer. That can mean automating a process, connecting your systems or rethinking how the work flows. The build is just the last step.",
+      "We go further than off-the-shelf tools. Most providers stop where their standard tool stops. We don’t. When your process needs something custom, we have the depth to deliver it. You never have to bend your business around rigid software.",
+      "We are an international team of senior developers. You work directly with the experienced people who build your solution. We have no large staff and no layers of management. Your budget goes into your solution and not into our structure. Costs stay transparent and delivery is fast."
+    ],
+    "tagline": {
+      "before": "Zerobits - We",
+      "heart": "love",
+      "after": "great solutions."
+    }
+  },
+  "blog": {
+    "title": {
+      "lead": "Build Smarter,",
+      "accent": "Innovate Faster"
+    },
+    "intro": "Discover practical insights and stories from our software engineers, designers, and innovators.",
+    "meta_title": "Blog - Insights, Trends & Solutions",
+    "read": "Read more",
+    "all": "All articles",
+    "empty": "No articles yet.",
+    "previous": "Newer articles",
+    "next": "Older articles",
+    "page": "Page {n} of {total}",
+    "pagination": "Pagination",
+    "carousel": "Latest articles",
+    "previous_slide": "Previous articles",
+    "next_slide": "Next articles",
+    "author": {
+      "label": "About the author",
+      "bio": "My name is Oliver Kirst. I bring more than 20 years of experience in software development and leadership roles. I will personally support you every step of the way. If you’d like to explore working with us, just drop me a message.",
+      "image_alt": "Oliver Kirst"
+    }
+  },
+  "services": {
+    "slug": "services",
+    "title": {
+      "lead": "Why We",
+      "accent": "Do It"
+    },
+    "subtitle": "Four disciplines, one goal: time for what really matters",
+    "text": "Because your team’s time is too valuable for copying data, chasing approvals and babysitting servers. We take that work off your plate - with a proven platform or a custom solution for your exact process. We choose what actually solves your problem.",
+    "more": "Learn More",
+    "more_about": "Learn more about {title}",
+    "back": "All services",
+    "others_title": {
+      "lead": "More",
+      "accent": "Services"
+    },
+    "items": {
+      "ai": {
+        "slug": "artificial-intelligence",
+        "title": "Artificial Intelligence",
+        "meta_title": "Artificial Intelligence - AI Assistants & Agents",
+        "meta_description": "AI that does real work: Zerobits builds assistants and agents with OpenAI, Claude, Gemini and Mistral, LangChain, LangGraph and Langfuse - wired into your documents and tools, with European models where privacy demands it.",
+        "card": "So knowledge stops hiding in documents and inboxes: assistants and agents that work with your data and inside the tools you already use.",
+        "text": "AI is only useful when it does real work. We build assistants and agents that know your documents, answer your customers and take routine decisions off your team’s desk. They work inside the tools you already use instead of a separate chat window. We work with leading models from OpenAI, Anthropic (Claude) and Google (Gemini). Where data protection calls for it, we use Mistral, which is developed and operated in Europe. And wherever a decision really matters, a human keeps the final say.",
+        "image_alt": "Illustration: a chat assistant connected to documents and an AI chip",
+        "features": {
+          "assistants": {
+            "title": "Knowledge Assistants",
+            "text": "Answers from your own documents"
+          },
+          "documents": {
+            "title": "Document AI",
+            "text": "Read, classify, extract"
+          },
+          "agents": {
+            "title": "AI Agents",
+            "text": "Tasks done inside your tools"
+          },
+          "chat": {
+            "title": "Customer Chat",
+            "text": "Every channel, one inbox"
+          },
+          "privacy": {
+            "title": "Privacy First",
+            "text": "European models where it matters"
+          },
+          "human": {
+            "title": "Human in the Loop",
+            "text": "Clear limits, your final say"
+          }
+        },
+        "blocks": {
+          "consulting": {
+            "title": "Consulting",
+            "text": "Before a single line of code gets written, the real question is what actually needs solving. We start there. We look at how you work today and find where time and money are leaking. Then we map out the solution that fits. That can be automation, a platform, a custom build or simply better use of what you already have. You get a clear plan and honest advice on what’s worth doing. And you get a partner who owns the outcome from first idea to live solution.",
+            "image_alt": "Illustration: two people discussing a chart",
+            "features": {
+              "listen": {
+                "title": "Listen First",
+                "text": "What do you actually need?"
+              },
+              "understand": {
+                "title": "Understand How You Work",
+                "text": "We learn your day to day"
+              },
+              "spot": {
+                "title": "Spot What's Slowing You Down",
+                "text": "Where time and effort get lost"
+              },
+              "approach": {
+                "title": "Find the Right Approach",
+                "text": "We check what fits you"
+              },
+              "plan": {
+                "title": "Agree on a Clear Plan",
+                "text": "You always know the next step"
+              },
+              "support": {
+                "title": "Count on Us",
+                "text": "Reliable support"
+              }
+            }
+          }
+        }
+      },
+      "automation": {
+        "slug": "automation",
+        "title": "Automation",
+        "meta_title": "Automation & Integration",
+        "meta_description": "Zerobits turns repetitive, manual work into reliable automated workflows and connects the tools you already use - with Temporal and custom code in TypeScript, Python and PHP.",
+        "card": "We take the repetitive, manual work off your plate. Using proven platforms we turn the tasks that eat your team’s time into reliable, automated workflows.",
+        "text": "Every business runs on tasks that eat time without adding value: copying data between systems, chasing approvals or building the same reports every week. We take that repetitive manual work off your plate. We use a proven workflow engine like Temporal and add custom code in TypeScript, Python or PHP where a process needs it. Time-consuming tasks become reliable automated workflows that scale with you. Your team is free for the work that actually moves things forward.",
+        "image_alt": "Illustration: steps of a workflow connected around a gear",
+        "features": {
+          "opportunities": {
+            "title": "Find the Opportunities",
+            "text": "Where's the busywork hiding?"
+          },
+          "tool": {
+            "title": "Select the Right Tool",
+            "text": "Proven engines, durable execution"
+          },
+          "workflow": {
+            "title": "Design the Workflow",
+            "text": "Your process, mapped end to end"
+          },
+          "ai": {
+            "title": "Smarter with AI",
+            "text": "Automate decisions, not just steps"
+          },
+          "custom": {
+            "title": "Custom Where It Counts",
+            "text": "Beyond what no-code can reach"
+          },
+          "running": {
+            "title": "Keep It Running",
+            "text": "Stable, monitored, maintained"
+          }
+        },
+        "blocks": {
+          "integration": {
+            "title": "Integration",
+            "text": "You don’t always need new software. Often you need your current software to work together. We connect the tools you already rely on and turn scattered islands into one connected system. Platforms, services and data come together exactly where you need them. We pick the right connection for each case: a clean API where one exists and custom middleware where it doesn’t. Information moves on its own and every system stays in sync.",
+            "image_alt": "Illustration: systems connected through a central hub",
+            "features": {
+              "landscape": {
+                "title": "Map the Landscape",
+                "text": "Every system, one clear picture"
+              },
+              "apis": {
+                "title": "Connect the APIs & MCPs",
+                "text": "Your services, wired together"
+              },
+              "sync": {
+                "title": "Sync the Data",
+                "text": "One source of truth, always current"
+              },
+              "bridges": {
+                "title": "Build the Bridges",
+                "text": "Custom middleware if needed"
+              },
+              "transfer": {
+                "title": "Move It Safely",
+                "text": "Encrypted, reliable data transfer"
+              },
+              "always-on": {
+                "title": "Always On",
+                "text": "Integrations you can rely on"
+              }
+            }
+          }
+        }
+      },
+      "cloud": {
+        "slug": "cloud",
+        "title": "Cloud",
+        "meta_title": "Cloud Platforms & Odoo Partner",
+        "meta_description": "Business platforms in the cloud: as an Odoo partner from Koblenz, Zerobits sets up Odoo, builds custom modules, integrates your existing systems and runs your instance on Odoo.sh.",
+        "card": "We set up and extend business platforms in the cloud to run your operations. We build custom modules when your process needs more than the standard offers.",
+        "text": "We set up and extend business platforms in the cloud to run your operations. CRM, sales, inventory, accounting and more come under one roof. We start by finding the modules that actually fit your processes. Then we configure them around how you really work. When the standard falls short, we build custom solutions that stay clean, versioned and upgrade-safe. Your platform keeps pace as your business changes.",
+        "image_alt": "Illustration: a cloud with business apps, connected to desktop, phone and laptop",
+        "features": {
+          "fit": {
+            "title": "The Right Fit",
+            "text": "We check what you need"
+          },
+          "setup": {
+            "title": "Clean Setup",
+            "text": "Your real workflows, mapped in"
+          },
+          "experts": {
+            "title": "Built by Experts",
+            "text": "Not just configured, understood"
+          },
+          "custom": {
+            "title": "Custom Modules",
+            "text": "When standard isn't enough"
+          },
+          "data": {
+            "title": "Bring Your Data",
+            "text": "Reliable migration, nothing lost"
+          },
+          "onboarding": {
+            "title": "Team Onboarding",
+            "text": "Training and support that sticks"
+          }
+        }
+      },
+      "devops": {
+        "slug": "devops",
+        "title": "Hosting",
+        "meta_title": "Hosting - Monitoring, Maintenance & CI/CD",
+        "meta_description": "Zerobits hosts, monitors and maintains your solution on your preferred cloud - AWS, Azure or Google Cloud: Kubernetes, automated releases with GitHub, real-time monitoring, backups and costs under control.",
+        "card": "We host, monitor and maintain your solution so it stays fast, secure and available. You don’t have to think about it.",
+        "text": "Software doesn’t stop needing attention once it’s live. Servers need patching and traffic spikes at the worst moment. Backups have to work when you need them. Someone has to notice when something breaks at 2 a.m. We host, monitor and maintain your solution so it stays fast, secure and available. It runs on your preferred cloud: AWS, Azure or Google Cloud. We keep everything patched, backed up and under watch. Your business keeps running while we handle what’s underneath.",
+        "image_alt": "Illustration: a release loop of code, test, deploy and monitoring between a terminal and servers",
+        "features": {
+          "environment": {
+            "title": "Right Environment",
+            "text": "Best economical solution"
+          },
+          "releases": {
+            "title": "Automated Releases",
+            "text": "CI/CD that ships with confidence"
+          },
+          "monitoring": {
+            "title": "Real-Time Monitoring",
+            "text": "Problems caught before you notice"
+          },
+          "security": {
+            "title": "Secure by Default",
+            "text": "Firewalls, encryption, backups"
+          },
+          "costs": {
+            "title": "Costs Under Control",
+            "text": "No runaway cloud bills"
+          },
+          "maintenance": {
+            "title": "We Run It",
+            "text": "Ongoing maintenance, handled"
+          }
+        }
+      }
+    }
+  },
+  "tools": {
+    "title": {
+      "lead": "Technologies",
+      "accent": "We Work With"
+    },
+    "text": "Proven tools and platforms we know from real projects. We choose them because they solve the problem and not because they are in fashion.",
+    "items": {
+      "openai": {
+        "text": "OpenAI’s GPT models are a strong foundation for assistants and autonomous agents. We use them for conversational interfaces, document understanding and automated decisions inside your processes."
+      },
+      "claude": {
+        "text": "Claude by Anthropic is strong at long documents, careful reasoning and code. We use it for agents that have to work reliably with tools and large amounts of context."
+      },
+      "gemini": {
+        "text": "Google Gemini is a multimodal model family that understands text, images, audio and video - a natural fit when your data and infrastructure already live in Google Cloud."
+      },
+      "mistral": {
+        "text": "Mistral delivers advanced AI models developed and operated in Europe, with a strong emphasis on compliance with local regulations and high European data privacy standards."
+      },
+      "langchain": {
+        "text": "LangChain is the open-source framework for applications built on large language models. It connects models with your data, tools and APIs - the basis for retrieval-augmented generation (RAG) and assistants."
+      },
+      "langgraph": {
+        "text": "LangGraph orchestrates AI agents as stateful graphs: multi-step workflows with memory, branching and human approval. This keeps agents controllable instead of unpredictable."
+      },
+      "langfuse": {
+        "text": "Langfuse is an open-source platform for LLM observability. We trace every model call, evaluate answer quality and keep an eye on costs, so AI features stay measurable in production."
+      },
+      "temporal": {
+        "text": "Temporal is a durable execution platform for workflows that must not fail. Long-running business processes survive crashes, retries and deployments and resume exactly where they stopped."
+      },
+      "typescript": {
+        "text": "TypeScript adds static types to JavaScript. We use it across frontend, backend and workflow code, so errors surface during development and large codebases stay maintainable."
+      },
+      "nestjs": {
+        "text": "NestJS is a Node.js framework for structured, testable backends in TypeScript. We build REST and GraphQL APIs, microservices and integration layers with it."
+      },
+      "python": {
+        "text": "Python is the language of data, AI and Odoo. We write Odoo modules, data pipelines, AI services and automation scripts in Python."
+      },
+      "php": {
+        "text": "PHP runs a large part of the web. We develop and modernise PHP applications, APIs and content management systems and connect them to the rest of your system landscape."
+      },
+      "react": {
+        "text": "React is the leading library for interactive web interfaces. We build fast, component-based web applications and dashboards with it."
+      },
+      "react-native": {
+        "text": "React Native brings one codebase to iOS and Android. We develop mobile apps that share their logic with the web application and reach the app stores faster."
+      },
+      "vue": {
+        "text": "Vue is a progressive JavaScript framework for approachable, performant user interfaces - from single interactive components to complete single-page applications."
+      },
+      "odoo": {
+        "text": "Odoo is a modular open-source ERP that brings CRM, sales, inventory, accounting and e-commerce into one system. As an Odoo partner we set it up, extend it and run it."
+      },
+      "kubernetes": {
+        "text": "Kubernetes orchestrates containers across clusters. We use it to deploy, scale and update applications without downtime - on any cloud or on your own hardware."
+      },
+      "aws": {
+        "text": "Amazon Web Services (AWS) offers the broadest range of cloud services. We design, run and cost-optimise infrastructure on AWS, from managed Kubernetes and databases to serverless functions."
+      },
+      "azure": {
+        "text": "Microsoft Azure is the natural choice for companies in the Microsoft ecosystem. We run applications on Azure and integrate them with Entra ID and Microsoft 365."
+      },
+      "gcp": {
+        "text": "Google Cloud Platform (GCP) stands for strong data, analytics and AI services. We run containers and data workloads on GCP, including Google Kubernetes Engine and Vertex AI."
+      },
+      "github": {
+        "text": "GitHub hosts our code and automates delivery. With GitHub Actions we build, test and deploy every change through reviewed, traceable CI/CD pipelines."
+      }
+    }
+  },
+  "portfolio": {
+    "slug": "portfolio",
+    "title": {
+      "lead": "Real Projects.",
+      "accent": "Real Impact."
+    },
+    "text": "From startups to enterprise solutions: our portfolio shows how we turn ideas into digital products that work.",
+    "more": "Learn More",
+    "back": "All projects",
+    "visit": "Visit website",
+    "stack_label": "Technologies used",
+    "gallery": "Images of {name}",
+    "previous": "Previous image",
+    "next": "Next image",
+    "slide": "Image {n} of {total}",
+    "items": {
+      "foo-kaz": {
+        "slug": "foo-kaz",
+        "name": "Foo-Kaz",
+        "meta_title": "Foo-Kaz - Location-Based Recommendation App",
+        "meta_description": "Reference project Foo-Kaz: a recommendation platform for local spots, built by Zerobits with React, React Native, NestJS and Temporal, Kubernetes on AWS and AI with LangChain, LangGraph, Mistral and Claude.",
+        "title": {
+          "lead": "Find",
+          "accent": "Perfect Spots"
+        },
+        "text": "Foo-Kaz is a location-based recommendation platform that connects users with authentic local experiences. Every recommendation comes directly from local residents. That means genuine and trustworthy insights into restaurants, bars, beaches, sightseeing and more. With just two clicks users discover the best places nearby, curated by the people who know them best.",
+        "image_alt": "Screenshot of the Foo-Kaz app"
+      },
+      "linguu": {
+        "slug": "linguu",
+        "name": "Linguu",
+        "meta_title": "Linguu - Interactive Language Learning Platform",
+        "meta_description": "Reference project Linguu: a German language learning platform with video lessons and interactive exercises, built by Zerobits with TypeScript, Vue and PHP.",
+        "title": {
+          "lead": "Interactive Language",
+          "accent": "Learning Platform"
+        },
+        "text": "We designed and built a user-centric German language learning platform with video lessons and interactive practice tools. Learners of all levels stay engaged, improve their fluency and track their progress with ease.",
+        "image_alt": "Screenshot of the Linguu learning platform"
+      }
+    }
+  },
+  "pricing": {
+    "title": {
+      "lead": "Transparent Pricing",
+      "accent": "No Surprises"
+    },
+    "items": {
+      "hourly": {
+        "title": "Hourly based",
+        "text": "When the path isn’t fully mapped yet, we work alongside you and adapt as we go. You get direct access to the right people exactly when the project needs them. You only pay for what you use. Ideal when scope will evolve and you want to stay flexible."
+      },
+      "fixed": {
+        "title": "Fixed Cost Projects",
+        "text": "When you need certainty, we define the scope up front. We commit to clear deliverables and a fixed price. No surprises and no scope creep on your bill. Ideal when the requirements are clear and you want budget and timeline locked in."
+      }
+    }
+  },
+  "team": {
+    "title": {
+      "lead": "Interested to Work",
+      "accent": "With Us?"
+    },
+    "text": "My name is Oliver Kirst. I bring more than 20 years of experience in software development and leadership roles. I will personally support you every step of the way. If you’d like to explore working with us, just drop me a message. I look forward to hearing from you!",
+    "cta": "Get in contact",
+    "image_alt": "Oliver Kirst - Zerobits IT company in Koblenz"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "text": "Contact us by email, phone or WhatsApp, or book a discovery call. You are also welcome to stop by in Koblenz.",
+    "whatsapp": "WhatsApp",
+    "booking": "Schedule discovery call",
+    "map_title": "Where to find us",
+    "map_note": "The map is loaded from Google Maps. This transfers data to Google.",
+    "map_load": "Show map",
+    "map_open": "Open in Google Maps",
+    "map_frame": "Map: Zerobits, Schloßstraße 37, 56068 Koblenz"
+  },
+  "odoo": {
+    "slug": "odoo-partner",
+    "title": "Zerobits is an Odoo Partner",
+    "intro": [
+      "Odoo is one of the most flexible business platforms on the market. It is a modular system that brings CRM, accounting, sales, inventory, project management, e-commerce and much more under one roof. Instead of five isolated tools with fragile interfaces, you get one end-to-end solution that grows with your company.",
+      "As an Odoo partner from Koblenz, we combine deep developer know-how with more than 20 years of experience in software development, customisation and cloud operations. We are not a mere reseller. We are a development team that understands Odoo, extends it and integrates it cleanly into your existing IT landscape."
+    ],
+    "work": {
+      "title": "How we work with Odoo",
+      "text": "From analysis to day-to-day operations - we accompany your Odoo project end to end: strategy, setup, customisation, integration and support after go-live.",
+      "items": [
+        {
+          "title": "Consulting & analysis",
+          "text": "We check which Odoo modules really fit your processes - and which ones you don’t need (yet)."
+        },
+        {
+          "title": "Setup & configuration",
+          "text": "We set Odoo up cleanly, configure your modules and map your workflows the way they really run."
+        },
+        {
+          "title": "Customisation",
+          "text": "Where the standard falls short, we develop tailor-made modules and extensions - versioned in Git, cleanly traceable and upgrade-safe."
+        },
+        {
+          "title": "Integration & migration",
+          "text": "We connect Odoo to your existing systems and move your data reliably into the new environment."
+        },
+        {
+          "title": "Hosting on Odoo.sh",
+          "text": "We run your instance on the official Odoo cloud. Through the GitHub integration we deploy in a controlled way, test in staging environments and only go live after a successful check."
+        },
+        {
+          "title": "Support & further development",
+          "text": "After the launch we stay at your side - with proactive support and continuous development through a clearly versioned process."
+        }
+      ]
+    },
+    "why": {
+      "title": "Why Zerobits as your Odoo partner",
+      "paragraphs": [
+        "Our strength is the combination of real developer know-how and the flexibility of a compact team. You work directly with the people who build your solution - with no detours through several departments.",
+        "Precisely because we come from custom software development, we don’t hit the limits of the standard with Odoo. When your process needs a special solution, we program it - instead of forcing you into a rigid system. And as with all our projects: transparent communication, traceable costs and no nasty surprises."
+      ]
+    },
+    "logo_alt": "Odoo logo"
+  },
+  "footer": {
+    "social": "Zerobits on social networks",
+    "legal": "Legal",
+    "networks": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "legal": {
+    "imprint": {
+      "slug": "impress",
+      "title": "Imprint"
+    },
+    "privacy": {
+      "slug": "privacy-policy",
+      "title": "Privacy policy"
+    }
+  },
+  "not_found": {
+    "code": "404",
+    "title": "Page not found",
+    "text": "Oops, page not found…",
+    "button": "Back to the home page"
+  },
+  "external": "opens in a new tab",
+  "chat": {
+    "hint": "Got a question? Chat with us.",
+    "close": "Close chat note"
+  }
+}

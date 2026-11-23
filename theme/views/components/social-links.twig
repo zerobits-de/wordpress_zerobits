@@ -1,0 +1,16 @@
+{#
+  Round links to the social profiles (content/site.json "social").
+  Params: links ([{id, icon, url, title}]), label, external_label, class (optional)
+#}
+{% if links %}
+  <ul class="social {{ class|default('') }}" aria-label="{{ label|e('html_attr') }}">
+    {% for link in links %}
+      <li>
+        <a class="social__link social__link--{{ link.id|e('html_attr') }}" href="{{ link.url|esc_url }}" target="_blank" rel="noopener">
+          {{ icon(link.icon) }}
+          <span class="sr-only">{{ link.title|e }} ({{ external_label|e }})</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

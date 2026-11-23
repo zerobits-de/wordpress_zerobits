@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+
+{# Blog list of the current language (BlogController). #}
+
+{% block content %}
+  <section class="section blog-list">
+    <div class="container">
+      <header class="section__head">
+        {% include 'components/dual-title.twig' with { title: t.blog.title, tag: 'h1', class: 'section__title' } only %}
+        <p class="section__intro">{{ t.blog.intro|e }}</p>
+      </header>
+
+      {% if posts %}
+        <ul class="post-grid">
+          {% for post in posts %}
+            <li>{% include 'components/post-card.twig' with { post: post, t: t, heading: 'h2' } only %}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty">{{ t.blog.empty|e }}</p>
+      {% endif %}
+
+      {% if pagination.total > 1 %}
+        <nav class="pagination" aria-label="{{ t.blog.pagination|e('html_attr') }}">
+          {% if pagination.previous %}
+            <a class="link-more" href="{{ pagination.previous|esc_url }}" rel="prev">{{ icon('arrow-left') }} {{ t.blog.previous|e }}</a>
+          {% endif %}
+          <span class="pagination__status">{{ t.blog.page|fill({ n: pagination.current, total: pagination.total })|e }}</span>
+          {% if pagination.next %}
+            <a class="link-more" href="{{ pagination.next|esc_url }}" rel="next">{{ t.blog.next|e }} {{ icon('arrow-right') }}</a>
+          {% endif %}
+        </nav>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.twig' %}
+
+{# Legal page (LegalController): HTML from content/legal/{lang}/{key}.html. #}
+
+{% block content %}
+  <article class="section page-text">
+    <div class="container prose">
+      <h1>{{ legal.title|e }}</h1>
+      {{ legal.content }}
+    </div>
+  </article>
+{% endblock %}

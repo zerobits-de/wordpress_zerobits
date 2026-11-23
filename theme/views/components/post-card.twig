@@ -1,0 +1,23 @@
+{#
+  Article card.
+  Params: post (BlogContent::card), t, heading (default h3),
+          variant (list: title, image, excerpt, link | teaser: image and title)
+#}
+{% set heading = heading|default('h3') %}
+{% set variant = variant|default('list') %}
+<article class="post-card post-card--{{ variant }}">
+  {% if variant == 'list' %}
+    <{{ heading }} class="post-card__title"><a href="{{ post.url|esc_url }}">{{ post.title|e }}</a></{{ heading }}>
+  {% endif %}
+  {% if post.image %}
+    <a class="post-card__media" href="{{ post.url|esc_url }}" tabindex="-1" aria-hidden="true">
+      {% include 'components/image.twig' with { image: post.image, size: 'zb-card', sizes: '(min-width: 64em) 413px, (min-width: 40em) 50vw, 100vw', class: 'post-card__image' } only %}
+    </a>
+  {% endif %}
+  {% if variant == 'list' %}
+    {% if post.excerpt %}<p class="post-card__excerpt">{{ post.excerpt|e }}</p>{% endif %}
+    <a class="post-card__more" href="{{ post.url|esc_url }}" aria-label="{{ t.blog.read|e('html_attr') }}: {{ post.title|e('html_attr') }}">{{ icon('fa-external-link-alt') }} {{ t.blog.read|e }}..</a>
+  {% else %}
+    <{{ heading }} class="post-card__title"><a href="{{ post.url|esc_url }}">{{ post.title|e }}</a></{{ heading }}>
+  {% endif %}
+</article>

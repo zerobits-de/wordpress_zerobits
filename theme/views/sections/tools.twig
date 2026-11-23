@@ -1,0 +1,28 @@
+{#
+  Technologies a service works with. Every card names the technology, links to
+  its website and describes it.
+  Params: tools ({title, text, items} from SiteContent::tools()),
+          external_label, soft (bool, optional)
+#}
+<section class="section tools{% if soft|default(false) %} section--soft{% endif %}" id="tools" aria-labelledby="tools-title">
+  <div class="container">
+    <header class="section__head">
+      {% include 'components/dual-title.twig' with { title: tools.title, id: 'tools-title', class: 'section__title' } only %}
+      <p class="section__intro">{{ tools.text|e }}</p>
+    </header>
+    <ul class="tool-cards">
+      {% for tool in tools.items %}
+        <li class="tool-card">
+          <h3 class="tool-card__title">
+            {% if tool.url|default('') %}
+              <a href="{{ tool.url|esc_url }}" target="_blank" rel="noopener">{{ tool.name|e }}<span class="sr-only"> ({{ external_label|e }})</span></a>
+            {% else %}
+              {{ tool.name|e }}
+            {% endif %}
+          </h3>
+          <p class="tool-card__text">{{ tool.text|e }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

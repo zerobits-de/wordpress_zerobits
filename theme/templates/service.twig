@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+
+{#
+  Page of one service (ServiceController): the service, its further blocks and
+  the Odoo partner section as rows that scroll past their illustration, then
+  the technologies where site.json asks for them, the other services, the
+  pricing models and the call to action.
+#}
+
+{% block content %}
+  {% set texts = page.texts %}
+
+  {% include 'sections/service-rows.twig' with { rows: page.rows, back: { label: texts.back, url: home_url ~ '#services' } } only %}
+
+  {% if page.tools %}
+    {% include 'sections/tools.twig' with { tools: page.tools, external_label: t.external, soft: true } only %}
+  {% endif %}
+
+  {% if page.others %}
+    <section class="section{% if not page.tools %} section--soft{% endif %}" aria-labelledby="others-title">
+      <div class="container">
+        <header class="section__head">
+          {% include 'components/dual-title.twig' with { title: texts.others_title, id: 'others-title', class: 'section__title' } only %}
+        </header>
+        <ul class="service-cards">
+          {% for other in page.others %}
+            {% include 'components/service-card.twig' with { service: other, more: texts.more, more_about: texts.more_about } only %}
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+
+  {% include 'sections/pricing.twig' with { pricing: page.pricing } only %}
+  {% include 'sections/team.twig' with { team: page.team, contact_url: contact_url } only %}
+{% endblock %}

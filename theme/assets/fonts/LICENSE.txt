@@ -1,0 +1,15 @@
+Fonts in this directory (latin subsets, self-hosted)
+
+Roboto (roboto-latin-variable.woff2, roboto-italic-latin-variable.woff2)
+  Copyright 2011 The Roboto Project Authors (https://github.com/googlefonts/roboto-classic)
+  Licensed under the SIL Open Font License, Version 1.1.
+
+Poppins (poppins-latin-400/500/600/700.woff2)
+  Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+  Licensed under the SIL Open Font License, Version 1.1.
+
+The SIL Open Font License 1.1 is available at https://openfontlicense.org
+
+Icons in ../images/icons/ whose file name starts with "fa-" are from
+Font Awesome Free 5 (https://fontawesome.com), licensed under CC BY 4.0
+(https://creativecommons.org/licenses/by/4.0/).

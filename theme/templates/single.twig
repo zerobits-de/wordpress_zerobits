@@ -1,0 +1,24 @@
+{% extends 'base.twig' %}
+
+{# One article (PostController): text on the left, author box on the right. #}
+
+{% block content %}
+  <div class="section section--soft article-page">
+    <div class="container article-page__inner">
+      <article class="article" lang="{{ t.lang.html|e('html_attr') }}">
+        <h1 class="article__title">{{ article.headline|e }}</h1>
+        {% if article.image %}
+          {% include 'components/image.twig' with { image: article.image, size: 'zb-wide', sizes: '(min-width: 64em) 820px, 100vw', loading: 'eager', fetchpriority: 'high', class: 'article__image' } only %}
+        {% endif %}
+        <div class="prose article__content">{{ article.content }}</div>
+      </article>
+
+      <aside class="author" aria-label="{{ t.blog.author.label|e('html_attr') }}">
+        {% include 'components/image.twig' with { image: author.image, class: 'author__image' } only %}
+        <p class="author__name">{{ author.name|e }}</p>
+        <p class="author__bio">{{ author.bio|e }}</p>
+        {% include 'components/social-links.twig' with { links: brand.social, label: t.footer.social, external_label: t.external, class: 'author__social' } only %}
+      </aside>
+    </div>
+  </div>
+{% endblock %}

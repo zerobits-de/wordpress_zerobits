@@ -1,0 +1,248 @@
+/* Reusable components: buttons, titles, cards, sliders, social links. */
+
+/* Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  border: 0;
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  transition: background-color var(--transition);
+}
+.btn:hover { background: var(--color-primary-dark); color: #fff; }
+
+.link-more { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500; }
+
+/* Two-colour heading */
+.dual-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: var(--leading-title);
+}
+.dual-title__lead { color: var(--color-ink); }
+.dual-title__accent { color: var(--color-primary); }
+.section--dark .dual-title__lead { color: var(--color-on-dark-muted); }
+
+/* Social links */
+.social { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+.social__link {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.125rem;
+  transition: transform var(--transition);
+}
+.social__link:hover { color: #fff; transform: scale(1.1); }
+.social__link--linkedin { background: var(--color-linkedin); }
+.social__link--github { background: var(--color-github); }
+.social__link--whatsapp { background: var(--color-whatsapp); }
+
+/* Chips: technologies of a project */
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg-band);
+  color: var(--color-primary-dark);
+  font-size: var(--text-small);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Card surface */
+.service-card, .tool-card, .author, .post-card--list {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+/* Slider and carousel: a scroll-snap track, arrows and dots (main.js) */
+.slider, .carousel { position: relative; }
+.slider__track, .carousel__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.slider__track::-webkit-scrollbar, .carousel__track::-webkit-scrollbar { display: none; }
+.slider__slide { flex: 0 0 100%; scroll-snap-align: center; display: grid; place-items: center; }
+.slider__image { width: auto; max-width: 100%; }
+.slider { padding-inline: 2.75rem; }
+.slider--portrait .slider__image { max-height: 44.5rem; }
+.slider--landscape .slider__image { max-height: 26rem; }
+
+.slider__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-primary);
+  font-size: 2rem;
+  transform: translateY(-50%);
+  transition: color var(--transition), opacity var(--transition);
+}
+.slider__arrow:hover { color: var(--color-primary-dark); }
+.slider__arrow--prev { left: 0; }
+.slider__arrow--next { right: 0; }
+.slider .slider__arrow { top: calc(50% - 1.25rem); }
+
+.slider__dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.25rem; min-height: 0.875rem; }
+.slider__dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  padding: 0;
+  background: #2f7cbf;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+.slider__dot[aria-current="true"] { border-color: #a9cdf0; }
+
+.carousel { margin-inline: calc(-1 * min(var(--gutter), 3.125rem)); padding-inline: min(var(--gutter), 3.125rem); }
+.carousel__track { gap: var(--gap); }
+.carousel__slide { flex: 0 0 100%; scroll-snap-align: start; }
+.carousel .slider__arrow--prev { left: 0; }
+.carousel .slider__arrow--next { right: 0; }
+.carousel .slider__arrow { top: 9.375rem; }
+@media (min-width: 40em) { .carousel__slide { flex-basis: calc((100% - var(--gap)) / 2); } }
+@media (min-width: 64em) { .carousel__slide { flex-basis: calc((100% - 2 * var(--gap)) / 3); } }
+@media (max-width: 39.99em) {
+  .carousel { margin-inline: 0; padding-inline: 0; }
+  .carousel .slider__arrow { background: rgba(255, 255, 255, 0.85); }
+  .carousel .slider__arrow--prev { left: 0.25rem; }
+  .carousel .slider__arrow--next { right: 0.25rem; }
+  .slider { padding-inline: 2rem; }
+  .slider .slider__arrow--prev { left: -0.5rem; }
+  .slider .slider__arrow--next { right: -0.5rem; }
+}
+
+/* Pagination */
+.pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2rem; margin-top: 3rem; }
+.pagination__status { color: var(--color-muted); }
+
+/* Generated background lines (components/lines.twig): two layers that drift as a whole. */
+.lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; contain: strict; }
+.lines__layer {
+  position: absolute;
+  inset: -3rem;
+  width: calc(100% + 6rem);
+  height: calc(100% + 6rem);
+  overflow: visible; /* the wrapper clips, not the moving layer */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.lines__layer--fan { transform-origin: 100% 0; animation: lines-fan 16s ease-in-out infinite alternate; }
+.lines__layer--waves { animation: lines-waves 12s ease-in-out infinite alternate; }
+@keyframes lines-fan {
+  from { transform: translate3d(0, -14px, 0) rotate(-1.6deg); }
+  to { transform: translate3d(0, 10px, 0) rotate(1.6deg); }
+}
+@keyframes lines-waves {
+  from { transform: translate3d(-20px, 16px, 0); }
+  to { transform: translate3d(16px, -14px, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lines__layer { animation: none; will-change: auto; }
+}
+
+/* Chat note ------------------------------------------------------------- */
+/* Speech bubble beside the chat button (components/chat-hint.twig). */
+.chat-hint {
+  position: fixed;
+  z-index: 90; /* below the header and its menu */
+  --chat-hint-inset: calc(var(--chat-button-offset) + var(--chat-button-size) + 0.875rem);
+  bottom: var(--chat-button-offset);
+  display: flex;
+  align-items: center;
+  min-height: var(--chat-button-size);
+  max-width: min(24rem, calc(100vw - var(--chat-hint-inset) - var(--chat-button-offset)));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-media);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+  /*
+    Glides in from the opposite corner of the window (1 s, whatever the width of the
+    window), rests 2 s, then tilts once around its tail and stays still.
+  */
+  animation:
+    chat-hint-walk 1s ease-out both,
+    chat-hint-wobble 0.6s ease-in-out 3s 1;
+}
+.chat-hint:hover,
+.chat-hint:focus-within { animation-play-state: running, paused; }
+.chat-hint[hidden] { display: none; }
+.chat-hint--left { --chat-hint-side: 1; left: var(--chat-hint-inset); transform-origin: 0 50%; }
+.chat-hint--right { --chat-hint-side: -1; right: var(--chat-hint-inset); transform-origin: 100% 50%; }
+/* Tail pointing at the chat button */
+.chat-hint::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border: solid var(--color-border);
+  background: var(--color-bg);
+  transform: rotate(45deg);
+}
+.chat-hint--left::after { left: -0.5625rem; border-width: 0 0 1px 1px; }
+.chat-hint--right::after { right: -0.5625rem; border-width: 1px 1px 0 0; }
+.chat-hint__open,
+.chat-hint__close {
+  border: 0;
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+.chat-hint__open {
+  padding: 1rem 0.375rem 1rem 1.25rem;
+  font-size: var(--text-lead);
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.chat-hint__open:hover { color: var(--color-primary); }
+.chat-hint__close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  align-self: stretch;
+  width: 3rem;
+  min-height: 3rem;
+  font-size: 1.125rem;
+  color: var(--color-muted);
+}
+.chat-hint__close:hover { color: var(--color-text); }
+/* From outside the far edge of the window to its place */
+@keyframes chat-hint-walk {
+  from { translate: calc(var(--chat-hint-side) * (100vw - var(--chat-hint-inset) + 1rem)) 0; }
+  to { translate: 0 0; }
+}
+@keyframes chat-hint-wobble {
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-hint { animation: none; }
+}

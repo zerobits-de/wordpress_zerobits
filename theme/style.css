@@ -1,0 +1,17 @@
+/*
+Theme Name:        Zerobits
+Theme URI:         https://www.zerobits.de/
+Author:            Zerobits
+Author URI:        https://www.zerobits.de/
+Description:       Timber/Twig theme for Zerobits (Odoo, automation, platforms, integration and operations) in English and German. Site texts are versioned in content/, blog articles live in WordPress.
+Version:           1.0.0
+Requires at least: 6.6
+Tested up to:      7.0
+Requires PHP:      8.2
+License:           Proprietary
+Text Domain:       zb-theme
+Tags:              one-column, custom-menu, featured-images, editor-style, accessibility-ready, blog
+
+All presentational styles live in assets/css/. This file only carries the
+theme header WordPress requires.
+*/

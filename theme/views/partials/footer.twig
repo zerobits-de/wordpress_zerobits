@@ -1,0 +1,20 @@
+{# Dark site footer: logo, address, social profiles and legal links. #}
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    {% include 'components/logo.twig' with { brand: brand, url: home_url, class: 'site-footer__brand' } only %}
+
+    <p class="site-footer__address">{{ brand.address|e }}</p>
+
+    {% include 'components/social-links.twig' with { links: brand.social, label: t.footer.social, external_label: t.external, class: 'site-footer__social' } only %}
+
+    {% if legal_links %}
+      <nav class="site-footer__legal" aria-label="{{ t.footer.legal|e('html_attr') }}">
+        <ul class="site-footer__legal-list">
+          {% for link in legal_links %}
+            <li><a href="{{ link.url|esc_url }}">{{ link.title|e }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</footer>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c86c4"/><stop offset="1" stop-color="#0b6ea5"/></linearGradient></defs><ellipse cx="300" cy="372" rx="250" ry="14" fill="#ecf2ff"/>
+<circle cx="300" cy="190" r="170" fill="#f1f6ff"/>
+<rect x="170" y="60" width="260" height="190" rx="12" fill="#fff" stroke="#0b6ea5" stroke-width="4"/>
+<path d="M200 210l50-56 40 30 50-70 60 50" stroke="#0b6ea5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="250" cy="154" r="7" fill="#ffb454"/><circle cx="290" cy="184" r="7" fill="#ffb454"/><circle cx="340" cy="114" r="7" fill="#ffb454"/>
+<rect x="200" y="84" width="80" height="10" rx="5" fill="#cfe3f3"/><rect x="200" y="102" width="50" height="10" rx="5" fill="#cfe3f3"/>
+<path d="M300 250v40m-50 72l50-72 50 72" stroke="#055683" stroke-width="5" stroke-linecap="round"/>
+<path d="M60 150a16 16 0 0 1 16-16h78a16 16 0 0 1 16 16v44a16 16 0 0 1-16 16h-50l-24 22v-22h-4a16 16 0 0 1-16-16z" fill="url(#g)"/>
+<rect x="80" y="156" width="70" height="8" rx="4" fill="#fff"/><rect x="80" y="174" width="46" height="8" rx="4" fill="#cfe3f3"/>
+<path d="M540 200a16 16 0 0 0-16-16h-78a16 16 0 0 0-16 16v44a16 16 0 0 0 16 16h50l24 22v-22h4a16 16 0 0 0 16-16z" fill="#fff" stroke="#0b6ea5" stroke-width="4"/>
+<path d="M462 222l12 12 24-26" stroke="#0b6ea5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#055683"><circle cx="110" cy="286" r="20"/><path d="M76 362a34 40 0 0 1 68 0z"/></g>
+<g fill="#0b6ea5"><circle cx="490" cy="306" r="18"/><path d="M460 362a30 34 0 0 1 60 0z"/></g>
+<circle cx="476" cy="96" r="24" fill="#ffb454"/><path d="M468 90a8 8 0 1 1 11 8c-2 1-3 3-3 5m0 7v1" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>

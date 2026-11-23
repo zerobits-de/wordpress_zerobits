@@ -1,0 +1,21 @@
+{#
+  Homepage hero: headline, text and call to action next to the illustration,
+  on a generated background of fine lines (components/lines.twig).
+  Params: hero (SiteContent::home().hero), contact_url
+#}
+<section class="hero" aria-labelledby="hero-title">
+  {% include 'components/lines.twig' with { class: 'hero__lines' } only %}
+  <div class="container hero__inner">
+    <div class="hero__body">
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__lead">{{ hero.title.lead|e }}</span>
+        <span class="hero__accent">{{ hero.title.accent|e }}</span>
+      </h1>
+      <p class="hero__text">{{ hero.text|e }}</p>
+      {% include 'components/button.twig' with { label: hero.cta, url: contact_url } only %}
+    </div>
+    <div class="hero__media">
+      {% include 'components/image.twig' with { image: hero.image, loading: 'eager', fetchpriority: 'high', class: 'hero__image' } only %}
+    </div>
+  </div>
+</section>

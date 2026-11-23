@@ -1,0 +1,25 @@
+{#
+  Language switch: the current page in every language (Context::languages()).
+  Params: languages, label, class (optional)
+  "no-prefetch" keeps WordPress' speculative loading away: a prefetch starts on pointer down,
+  before main.js has stored the chosen language, and would be answered for the old one.
+#}
+{% if languages|length > 1 %}
+  <nav class="lang-switch no-prefetch {{ class|default('') }}" aria-label="{{ label|e('html_attr') }}">
+    <ul class="lang-switch__list">
+      {% for language in languages %}
+        <li>
+          <a class="lang-switch__link{% if language.current %} is-current{% endif %}"
+             href="{{ language.url|esc_url }}"
+             hreflang="{{ language.code|e('html_attr') }}"
+             lang="{{ language.html|e('html_attr') }}"
+             {% if language.current %}aria-current="true"{% endif %}
+             {% if language.same %}data-keep-position{% endif %}>
+            <span aria-hidden="true">{{ language.short|e }}</span>
+            <span class="sr-only">{{ language.name|e }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

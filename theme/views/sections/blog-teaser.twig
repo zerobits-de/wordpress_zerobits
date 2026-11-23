@@ -1,0 +1,28 @@
+{#
+  Latest articles of the language as a carousel (three cards visible on desktop).
+  Params: posts (BlogContent cards), t, blog_url
+#}
+{% if posts %}
+  <section class="section blog-teaser" id="blog" aria-labelledby="blog-teaser-title">
+    <div class="container">
+      <header class="section__head">
+        {% include 'components/dual-title.twig' with { title: t.blog.title, id: 'blog-teaser-title', class: 'section__title' } only %}
+        <p class="section__intro">{{ t.blog.intro|e }}</p>
+      </header>
+
+      <div class="carousel" data-slider role="group" aria-roledescription="carousel" aria-label="{{ t.blog.carousel|e('html_attr') }}">
+        <ul class="carousel__track" data-slider-track tabindex="0">
+          {% for post in posts %}
+            <li class="carousel__slide">{% include 'components/post-card.twig' with { post: post, t: t, variant: 'teaser' } only %}</li>
+          {% endfor %}
+        </ul>
+        {% if posts|length > 1 %}
+          <button class="slider__arrow slider__arrow--prev" type="button" data-slider-prev aria-label="{{ t.blog.previous_slide|e('html_attr') }}">{{ icon('arrow-left') }}</button>
+          <button class="slider__arrow slider__arrow--next" type="button" data-slider-next aria-label="{{ t.blog.next_slide|e('html_attr') }}">{{ icon('arrow-right') }}</button>
+        {% endif %}
+      </div>
+
+      <p class="blog-teaser__all"><a class="link-more" href="{{ blog_url|esc_url }}">{{ t.blog.all|e }} {{ icon('arrow-right') }}</a></p>
+    </div>
+  </section>
+{% endif %}

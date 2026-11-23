@@ -1,0 +1,53 @@
+{
+  "name": "zerobits/zb-theme",
+  "description": "Timber/Twig one-pager theme for Zerobits (AI, automation, cloud and hosting).",
+  "type": "wordpress-theme",
+  "license": "proprietary",
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": "^8.2",
+    "timber/timber": "^2.5"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "wp-coding-standards/wpcs": "^3.1",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "phpstan/phpstan": "^2.1",
+    "szepeviktor/phpstan-wordpress": "^2.0",
+    "php-stubs/wordpress-stubs": "^6.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "ZB\\Theme\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "8.3.0"
+    },
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "lint:php": "find . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null && echo 'PHP syntax OK'",
+    "lint:phpcs": "phpcs",
+    "lint:twig": "php ../bin/twig-lint.php templates views",
+    "analyse": "phpstan analyse --memory-limit=1G",
+    "lint": [
+      "@lint:php",
+      "@lint:phpcs",
+      "@lint:twig",
+      "@lint:content"
+    ],
+    "test": [
+      "@analyse",
+      "@lint:twig",
+      "sh ../bin/validate-theme.sh ."
+    ],
+    "lint:content": "php ../bin/check-content.php ."
+  }
+}

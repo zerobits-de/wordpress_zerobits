@@ -1,0 +1,17 @@
+{#
+  Flat navigation list.
+  Params: items (array of {title, url, current?}), class (BEM block), aria_label
+  `current` marks the link of the page that is shown.
+  `data-label` repeats the title so that CSS can reserve the width of the bold (active) state.
+#}
+{% if items %}
+  <nav class="{{ class }}" aria-label="{{ aria_label|e('html_attr') }}">
+    <ul class="{{ class }}__list">
+      {% for item in items %}
+        <li class="{{ class }}__item">
+          <a class="{{ class }}__link{% if item.current|default(false) %} is-active{% endif %}" href="{{ item.url|esc_url }}" data-label="{{ item.title|e('html_attr') }}"{% if item.current|default(false) %} aria-current="page"{% endif %}>{{ item.title|e }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

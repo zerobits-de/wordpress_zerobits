@@ -1,0 +1,85 @@
+/* Reset, elements and text styles. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+ul[class], ol[class] { padding: 0; list-style: none; }
+
+h1, h2, h3, h4 {
+  color: var(--color-ink);
+  line-height: var(--leading-title);
+}
+
+img, svg, video, canvas, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+
+a { color: var(--color-primary); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--color-primary-dark); }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+
+:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
+.site-header :focus-visible, .section--dark :focus-visible, .site-footer :focus-visible { outline-color: #fff; }
+
+.icon { width: 1em; height: 1em; flex: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 200;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: var(--color-primary-dark);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+/* Running text: articles, legal pages, the Odoo page. */
+.prose { overflow-wrap: break-word; hyphens: auto; }
+.prose > * + * { margin-top: 1.25em; }
+.prose h1 { font-size: var(--text-h1); font-weight: 700; margin-bottom: 0.6em; }
+.prose h2 { font-size: var(--text-h2); font-weight: 600; margin-top: 1.6em; }
+.prose h3 { font-size: var(--text-h3); font-weight: 600; margin-top: 1.5em; }
+.prose h4 { font-size: 1.125rem; margin-top: 1.4em; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li + li { margin-top: 0.4em; }
+.prose a { text-decoration: underline; text-underline-offset: 0.15em; overflow-wrap: anywhere; }
+.prose img { border-radius: var(--radius-media); }
+.prose blockquote { padding-left: 1.25em; border-left: 3px solid var(--color-primary); color: var(--color-muted); }
+.prose code { font-size: 0.9em; padding: 0.1em 0.35em; background: var(--color-bg-band); border-radius: 4px; }
+.prose pre { padding: 1rem; overflow-x: auto; background: var(--color-dark); color: var(--color-on-dark); border-radius: var(--radius); }
+.prose pre code { padding: 0; background: none; }
+.prose table { width: 100%; border-collapse: collapse; }
+.prose th, .prose td { padding: 0.5rem 0.75rem; border: 1px solid var(--color-border); text-align: left; }
+.prose hr { border: 0; border-top: 1px solid var(--color-border); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

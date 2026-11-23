@@ -1,0 +1,12 @@
+{% extends 'base.twig' %}
+
+{# Generic WordPress page (not part of the content model, see PageController). #}
+
+{% block content %}
+  <article class="section page-text">
+    <div class="container prose">
+      <h1>{{ post.title }}</h1>
+      {{ post.content }}
+    </div>
+  </article>
+{% endblock %}

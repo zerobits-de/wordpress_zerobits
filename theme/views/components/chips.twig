@@ -1,0 +1,11 @@
+{#
+  Chips: the technologies of a project.
+  Params: items ([{name}]), label (accessible name of the list), class (optional)
+#}
+{% if items %}
+  <ul class="chips {{ class|default('') }}" aria-label="{{ label|e('html_attr') }}">
+    {% for item in items %}
+      <li class="chip">{{ item.name|e }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

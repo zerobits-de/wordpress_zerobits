@@ -1,0 +1,11 @@
+{#
+  Button-styled link.
+  Params: label, url, variant (primary|light, default primary), class, external (bool),
+          external_label (screen-reader hint for new tabs), aria_label (optional)
+#}
+<a class="btn btn--{{ variant|default('primary') }} {{ class|default('') }}" href="{{ url|esc_url }}"
+   {% if aria_label|default('') %}aria-label="{{ aria_label|e('html_attr') }}"{% endif %}
+   {% if external|default(false) %}target="_blank" rel="noopener"{% endif %}>
+  <span class="btn__label">{{ label|e }}</span>
+  {% if external|default(false) and external_label|default('') %}<span class="sr-only">({{ external_label|e }})</span>{% endif %}
+</a>

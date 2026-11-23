@@ -1,0 +1,25 @@
+{#
+  Decorative background of fine curved lines, generated here (no image file):
+  a fan of arcs from the top right and a set of waves at the bottom left.
+  Each group is its own layer that drifts slowly as a whole (CSS in
+  components.css; still with prefers-reduced-motion). The lines themselves are
+  not animated: moving a finished layer costs no repaint and does not flicker.
+  Params: class (optional), count (lines per group, default 14)
+#}
+{% set count = count|default(14) %}
+<div class="lines {{ class|default('') }}" aria-hidden="true">
+  <svg class="lines__layer lines__layer--fan" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(-24 1500 -60)">
+      {% for i in 0..(count - 1) %}
+        <ellipse cx="{{ 1500 + i * 14 }}" cy="{{ -60 - i * 10 }}" rx="{{ 230 + i * 46 }}" ry="{{ 300 + i * 52 }}" opacity="{{ (1 - i / count * 0.75)|round(2) }}"/>
+      {% endfor %}
+    </g>
+  </svg>
+  <svg class="lines__layer lines__layer--waves" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      {% for i in 0..(count - 1) %}
+        <path d="M-80 {{ 620 + i * 14 }} C 140 {{ 560 + i * 15 }}, 300 {{ 640 + i * 13 }}, 560 {{ 900 + i * 6 }}" opacity="{{ (1 - i / count * 0.6)|round(2) }}"/>
+      {% endfor %}
+    </g>
+  </svg>
+</div>

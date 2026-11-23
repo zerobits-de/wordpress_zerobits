@@ -1,0 +1,14 @@
+{% extends 'base.twig' %}
+
+{# Not found (NotFoundController): large code on the brand colour, link to the homepage. #}
+
+{% block content %}
+  <section class="not-found">
+    {% include 'components/lines.twig' with { class: 'not-found__lines' } only %}
+    <div class="container not-found__inner">
+      <p class="not-found__code" aria-hidden="true">{{ t.not_found.code|e }}</p>
+      <h1 class="not-found__title">{{ t.not_found.text|e }}</h1>
+      {% include 'components/button.twig' with { label: t.not_found.button, url: home_url } only %}
+    </div>
+  </section>
+{% endblock %}
