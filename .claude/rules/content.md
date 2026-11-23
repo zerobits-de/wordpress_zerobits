@@ -6,8 +6,8 @@ paths:
 
 # Editing content
 
-All texts of the site are files in `theme/content/`. A change is a commit; CI checks it and a
-release deploys it (see [deployment.md](deployment.md)). Only blog articles are edited in wp-admin.
+All texts of the site are files in `theme/content/`. A change is a commit; CI checks it and the
+merge into `main` deploys it (see [deployment.md](deployment.md)). Only blog articles are edited in wp-admin.
 
 | What | Where |
 |---|---|

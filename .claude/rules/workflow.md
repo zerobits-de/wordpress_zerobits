@@ -61,4 +61,5 @@ e.g. `feat: add a pricing section to the service pages`.
 6. **Close** – after the merge, comment on the ticket (what changed, commit or
    PR link, how the acceptance criteria are met) and move it to *Done*.
 
-Merging does not deploy. A change goes live with a release (see `deployment.md`).
+Merging deploys: once CI has passed on `main`, the theme goes live on the production server
+(see `deployment.md`). Check the live site after the merge.
