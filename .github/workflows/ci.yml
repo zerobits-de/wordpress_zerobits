@@ -12,9 +12,11 @@ env:
 permissions:
   contents: read
 
+# A newer push replaces a running check, except on main: there the run ends with
+# the deployment, which must not be cancelled halfway.
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   validate:
@@ -210,6 +212,14 @@ jobs:
           coverage: none
           tools: composer:v2
 
+      # Every build gets its own version (base version from style.css + run number
+      # + commit). The version is part of the asset URLs, so browsers fetch the new
+      # CSS and JS after a deployment instead of using their cached copies.
+      - name: Stamp build version
+        run: |
+          BASE=$(sed -n 's/^Version:[[:space:]]*//p' theme/style.css | head -n1)
+          sh bin/set-version.sh "${BASE}-${GITHUB_RUN_NUMBER}.${GITHUB_SHA::7}" theme
+
       - name: Build zb-theme.zip
         run: bash bin/build.sh
 
@@ -228,3 +238,45 @@ jobs:
           name: zb-theme
           path: build/zb-theme.zip
           retention-days: 14
+
+  # Runs only for pushes to main (a merged pull request), after every check has
+  # passed. The secrets belong to the `production` environment, which is limited
+  # to main, so pull requests and forks can neither deploy nor read them.
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    needs: [validate, docker, build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://zerobits.de
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v4
+        with:
+          name: zb-theme
+          path: build
+
+      # The key is bound to bin/server-deploy.sh on the server (forced command):
+      # it takes the ZIP on stdin, installs it as a new release, smoke-tests the
+      # live site and switches back to the previous release if that fails.
+      - name: Install on the server
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -T -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" < build/zb-theme.zip
+
+      - name: Remove the key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
