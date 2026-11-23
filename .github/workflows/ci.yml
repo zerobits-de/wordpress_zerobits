@@ -72,12 +72,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # seed/ is not in the repository; the smoke test runs against two fixture articles.
       - name: Prepare environment
-        run: |
-          cp .env.example .env
-          mkdir -p seed/posts
-          cp .github/fixtures/posts/*.html seed/posts/
+        run: cp .env.example .env
 
       - name: Validate compose file
         run: docker compose config -q
@@ -97,7 +93,8 @@ jobs:
           done
           echo "WordPress did not start"; exit 1
 
-      - name: Install WordPress and blog articles
+      # seed/ is not in the repository: the site is tested without blog articles.
+      - name: Install WordPress
         run: docker compose exec -T wordpress bash /opt/zb/bin/wp-install.sh
 
       - name: Smoke test pages
@@ -131,12 +128,11 @@ jobs:
             [ "$got" = "301 $B$2" ] || { echo "FAIL redirect $1: $got"; exit 1; }
             echo "ok  $1 -> $2"
           }
-          # Both languages (slugs from theme/content/*.json and .github/fixtures/posts/).
+          # Both languages (slugs from theme/content/*.json).
           check $B/                 200 'lang="en-US"'
           check $B/                 200 'class="hero'
           check $B/                 200 'id="portfolio"'
           check $B/                 200 'hreflang="de"'
-          check $B/                 200 'class="carousel'
           check $B/de/              200 'lang="de-DE"'
           check $B/de/              200 'Schluss mit Routinearbeit.'
           check $B/                 200 'href="http://localhost:8093/services/automation/"'
@@ -148,21 +144,13 @@ jobs:
           check $B/de/services/cloud/ 200 'id="odoo"'
           check $B/portfolio/foo-kaz/ 200 'class="project project--page'
           check $B/de/portfolio/linguu/ 200 'hreflang="en" href="http://localhost:8093/portfolio/linguu/"'
-          check $B/blog/            200 'why-we-use-claude-code-at-zerobits'
-          check $B/de/blog/         200 'warum-wir-claude-code-verwenden'
-          check $B/blog/why-we-use-claude-code-at-zerobits/ 200 'class="article'
-          check $B/de/blog/warum-wir-claude-code-verwenden/ 200 'class="author'
+          check $B/blog/            200 'class="section blog-list'
+          check $B/de/blog/         200 'lang="de-DE"'
           check $B/impress/         200 'class="section page-text'
           check $B/privacy-policy/  200 'class="section page-text'
           check $B/de/impressum/    200 'class="section page-text'
           check $B/de/datenschutz/  200 'class="section page-text'
           check $B/no-such-page-xyz/ 404 'class="not-found'
-          # Each blog only lists its own language.
-          html=$(curl -s $B/blog/)
-          [[ "$html" != *"warum-wir-claude-code-verwenden"* ]] || { echo "FAIL German article on English blog"; exit 1; }
-          html=$(curl -s $B/de/blog/)
-          [[ "$html" != *"why-we-use-claude-code-at-zerobits"* ]] || { echo "FAIL English article on German blog"; exit 1; }
-          echo "ok  blogs are separated by language"
           # The homepage follows the browser's language; the language switch (cookie) wins.
           negotiate() {
             local got
@@ -186,12 +174,8 @@ jobs:
           redirect /portfolio/ '/#portfolio'
           redirect /odoo-partner/ '/services/cloud/#odoo'
           redirect /de/odoo-partner/ '/de/services/cloud/#odoo'
-          # Articles always live under their language.
-          redirect /blog/warum-wir-claude-code-verwenden/ /de/blog/warum-wir-claude-code-verwenden/
           redirect /category/uncategorized/ /blog/
           # Addresses of the former Elementor/TranslatePress site.
-          redirect /why-we-use-claude-code-at-zerobits/ /blog/why-we-use-claude-code-at-zerobits/
-          redirect /de/warum-wir-claude-code-verwenden/ /de/blog/warum-wir-claude-code-verwenden/
           redirect /impressum/ /de/impressum/
           redirect /de/impress/ /de/impressum/
           redirect /de/privacy-policy/ /de/datenschutz/
