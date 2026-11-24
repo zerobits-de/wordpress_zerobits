@@ -20,35 +20,40 @@ paths:
    of the former Elementor site).
    `seed/` is not in the repository, so the job runs without blog articles: the article pages,
    the carousel and the article redirects are not covered.
-3. **build**: stamps a build version, builds `zb-theme.zip` and checks that it contains `vendor/`
-   and both language files.
-4. **deploy** (pushes to `main` only): installs the package on the production server.
+3. **build**: builds `zb-theme.zip` and checks that it contains `vendor/` and both language files.
 
-Since all texts are in the theme, **a content change is a code change**: commit, pull request,
-merge, and CI deploys it.
+Merging into `main` runs these checks again and does not deploy. Since all texts are in the theme,
+**a content change is a code change**: commit, pull request, merge, release.
 
-## Deployment (every merge to `main`)
+## Releases and deployment
 
-Merging a pull request into `main` deploys, as soon as `validate`, `docker` and `build` have
-passed. Nothing is deployed from pull requests, other branches or forks.
+A change goes live with a release. Go to **Releases › Draft a new release** in GitHub, enter a new
+tag on `main` in the scheme `x.x.x`, such as `1.0.1` (three numbers, no `v` prefix, no suffix), and
+**Publish**. The tag starts `.github/workflows/release.yml`:
 
-1. `build` stamps the package with `<base version>-<run number>.<commit>` (for example
-   `1.0.0-42.d0a9fc7`; the base version is the one in `theme/style.css`). The version is part of
+1. `release` checks that the tag is a plain version and points to a commit on `main`, stamps the
+   version into `style.css` and `Theme::VERSION` (the tag is the source of truth, there is no bump
+   commit), validates, builds and attaches `zb-theme.zip` to the release. The version is part of
    every asset URL, so browsers load the new CSS and JS instead of their cached copies.
-2. `deploy` sends the ZIP over SSH to the deploy user on the server. The SSH key is bound to
+2. `deploy` sends that ZIP over SSH to the deploy user on the server. The SSH key is bound to
    [`bin/server-deploy.sh`](../../bin/server-deploy.sh) there and cannot run anything else.
 3. The script unpacks the package as a new release, switches the site to it, reloads the web
    server and smoke-tests the live site. If a route fails, it switches back to the previous
    release and the job fails. The last five releases are kept.
 
-**Secrets** (GitHub › Settings › Environments › `production`, limited to the branch `main`):
-`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS` (the server's SSH host key, as
-printed by `ssh-keyscan`). This repository is public: the server address and the key exist only
-there, never in a file.
+Other tags (`v1.0.1`, `1.0.1-rc1`) do not start the workflow, and nothing is deployed from pull
+requests, branches or forks. A version is released once: to ship a fix, publish the next version
+instead of moving a tag.
 
-**Rolling back**: revert the pull request; the merge of the revert deploys the previous state.
-On the server, as the deploy user, `ln -sfn releases/<version> current.new && mv -T current.new
-current` followed by a reload of the web server does the same within seconds.
+**Secrets** (GitHub › Settings › Environments › `production`, limited to tags matching
+`[0-9]*.[0-9]*.[0-9]*`): `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS` (the
+server's SSH host key, as printed by `ssh-keyscan`). This repository is public: the server address
+and the key exist only there, never in a file.
+
+**Rolling back**: in **Actions › Release**, open the run of the previous version and choose
+**Re-run all jobs**; it builds and deploys that version again. On the server, as the deploy user,
+`ln -sfn releases/<version> current.new && mv -T current.new current` followed by a reload of the
+web server does the same within seconds. Then fix the cause and publish a new version.
 
 ### Server layout
 
@@ -57,7 +62,7 @@ In the home directory of the deploy user:
 | Path | Content | Owner |
 |---|---|---|
 | `www/` | WordPress (document root); `wp-content/themes/zb-theme` is a symlink to `current` | web server user |
-| `releases/<version>/` | one unpacked theme per deployment | deploy user |
+| `releases/<version>/` | one unpacked theme per release | deploy user |
 | `current` | symlink to the active release | deploy user |
 
 WordPress itself belongs to the web server user, so it keeps updating itself (core, translations);
@@ -76,15 +81,6 @@ The key of the deploy user is restricted in `~/.ssh/authorized_keys`:
 ```
 restrict,command="/usr/local/bin/zb-deploy-theme" ssh-ed25519 AAAA… github-actions-deploy
 ```
-
-## Releases
-
-Optional, for a named version with a downloadable package: go to **Releases › Draft a new release**
-in GitHub, enter a tag such as `1.0.1` (no `v` prefix), and **Publish**.
-`.github/workflows/release.yml` then stamps the version into `style.css` and `Theme::VERSION`,
-validates, builds and attaches `zb-theme.zip` to the release. A release does not deploy; to raise
-the base version of the deployed builds, change it with `make set-version VERSION=1.0.1` in a
-pull request.
 
 ## First installation of a server
 
@@ -114,7 +110,8 @@ theme's rewrite rules come first.
 
 ## Updates
 
-Updates are deployed by CI (see above). By hand, a package can be sent the same way with a key
-that is allowed to run the script: `ssh <deploy user>@<server> < build/zb-theme.zip`.
+Updates are deployed by publishing a release (see above). By hand, a package can be sent the same
+way with a key that is allowed to run the script:
+`ssh <deploy user>@<server> < build/zb-theme.zip`.
 New language slugs or languages take effect without a manual permalink flush, because
 `Router::add_rules()` flushes when the rules change. Never deploy the database or uploads from CI.
