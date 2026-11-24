@@ -1,7 +1,8 @@
 name: Release
 
-# Publishing a release in the GitHub UI (or pushing a tag like 1.2.3, no "v"
-# prefix) validates, builds and attaches zb-theme.zip to that release.
+# Publishing a release in the GitHub UI (or pushing a tag) with a version like
+# 1.2.3 - three numbers, no "v" prefix, no suffix - validates, builds, attaches
+# zb-theme.zip to that release and deploys it to the production server.
 # The tag is the source of truth for the version: bin/set-version.sh stamps it
 # into theme/style.css and Theme::VERSION before the build, so no bump commit
 # is required.
@@ -9,32 +10,49 @@ name: Release
 on:
   push:
     tags:
-      - "*.*.*"
+      - "[0-9]+.[0-9]+.[0-9]+"
 
 env:
   PHP_VERSION: "8.3"
 
 permissions:
-  contents: write
+  contents: read
+
+# One release at a time, and never cancelled halfway through a deployment.
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
     name: Validate, build and publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
+      # Full history: the next step compares the tag with main.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Only what has been reviewed and merged is released: the tag has to be a
+      # plain version and has to point to a commit on main.
+      - name: Check the tag
+        run: |
+          TAG="$GITHUB_REF_NAME"
+          if ! printf '%s' "$TAG" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Tag $TAG is not a version like 1.2.3."
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "Tag $TAG points to ${GITHUB_SHA::7}, which is not on main."
+            exit 1
+          fi
 
       - name: Stamp version from tag
         run: |
-          TAG="$GITHUB_REF_NAME"
-          case "$TAG" in
-            v*)
-              echo "Tag $TAG uses a 'v' prefix; tags are plain versions like ${TAG#v}."
-              exit 1
-              ;;
-          esac
-          sh bin/set-version.sh "$TAG" theme
-          echo "Releasing version $TAG"
+          sh bin/set-version.sh "$GITHUB_REF_NAME" theme
+          echo "Releasing version $GITHUB_REF_NAME"
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -80,3 +98,52 @@ jobs:
               --title "Zerobits theme $TAG" \
               --generate-notes
           fi
+
+      # The deploy job installs exactly this package.
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zb-theme
+          path: build/zb-theme.zip
+          retention-days: 14
+
+  # The secrets belong to the `production` environment, which is limited to
+  # version tags, so pull requests, branches and forks can neither deploy nor
+  # read them.
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    needs: release
+    environment:
+      name: production
+      url: https://zerobits.de
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v4
+        with:
+          name: zb-theme
+          path: build
+
+      # The key is bound to bin/server-deploy.sh on the server (forced command):
+      # it takes the ZIP on stdin, installs it as a new release, smoke-tests the
+      # live site and switches back to the previous release if that fails.
+      - name: Install on the server
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -T -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" < build/zb-theme.zip
+
+      - name: Remove the key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
