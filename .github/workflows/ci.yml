@@ -146,6 +146,8 @@ jobs:
           check $B/de/portfolio/linguu/ 200 'hreflang="en" href="http://localhost:8093/portfolio/linguu/"'
           check $B/blog/            200 'class="section blog-list'
           check $B/de/blog/         200 'lang="de-DE"'
+          check $B/about-us/        200 'class="timeline"'
+          check $B/de/ueber-uns/    200 'hreflang="en" href="http://localhost:8093/about-us/"'
           check $B/impress/         200 'class="section page-text'
           check $B/privacy-policy/  200 'class="section page-text'
           check $B/de/impressum/    200 'class="section page-text'
@@ -179,7 +181,8 @@ jobs:
           redirect /impressum/ /de/impressum/
           redirect /de/impress/ /de/impressum/
           redirect /de/privacy-policy/ /de/datenschutz/
-          redirect /ueber-uns/ '/#about-us'
+          redirect /ueber-uns/ /de/ueber-uns/
+          redirect /de/about-us/ /de/ueber-uns/
           redirect /de/projects/foo-kaz/ '/de/#portfolio'
 
       - name: Debug log on failure
