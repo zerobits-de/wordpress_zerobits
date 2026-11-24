@@ -11,11 +11,11 @@ Functions\Router           rewrite rules -> query vars zb_route, zb_lang, zb_pag
   |                        template_include -> always index.php
 index.php -> Router::controller()
   |   Routing\Request::current(): {route, lang, page, paged}
-Controller (src/Controllers)   Home | Service | Project | Blog | Post | Legal | Page | NotFound
+Controller (src/Controllers)   Home | Service | Project | About | Blog | Post | Legal | Page | NotFound
   |   context(): Timber::context() + what the template needs
 Timber::render(templates, context)
   |
-Twig  templates/{home,service,project,blog,single,legal,page,404}.twig extend base.twig
+Twig  templates/{home,service,project,about,blog,single,legal,page,404}.twig extend base.twig
       views/partials  header (navigation, language switch), footer
       views/sections  hero, about, blog-teaser, services, portfolio, pricing, team, contact,
                       service-rows, tools
@@ -32,6 +32,7 @@ Twig  templates/{home,service,project,blog,single,legal,page,404}.twig extend ba
 | Homepage sections | site.json + texts | `Content\SiteContent::home()` |
 | Service pages | site.json `services`, `tools`, `odoo.logo` + texts `services`, `tools`, `odoo` | `Content\SiteContent::service()` (`services()`, `tools()`, `odoo()`) |
 | Project pages | site.json `portfolio`, `tools` + texts `portfolio` | `Content\SiteContent::project()` (`portfolio()`) |
+| About us page | site.json `story` (screenshot, milestones, then/now rows) + texts `story` | `Content\SiteContent::story()` |
 | Legal pages | `content/legal/{lang}/{key}.html` | `Content\Store::legal_html()` |
 | Blog articles | WordPress posts + taxonomy `zb_language` | `Content\BlogContent`, `Functions\BlogLanguage` |
 

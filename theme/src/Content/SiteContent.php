@@ -63,7 +63,7 @@ final class SiteContent {
 
 		return array(
 			'hero'      => $hero,
-			'about'     => $this->texts( 'about' ),
+			'about'     => array_merge( $this->texts( 'about' ), array( 'url' => Urls::about( $this->lang ) ) ),
 			'services'  => $this->services(),
 			'portfolio' => $this->portfolio(),
 			'team'      => $this->team(),
@@ -249,6 +249,52 @@ final class SiteContent {
 		}
 
 		return null;
+	}
+
+	/**
+	 * The about us page: the story of Zerobits. Texts from content/{lang}.json
+	 * "story"; the screenshot of the 2001 website and the address of its copy in
+	 * the Wayback Machine (`archive_url`), the milestones (`id`, `year`)
+	 * and the then/now comparison (`id`) from content/site.json "story".
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function story(): array {
+		$story = $this->texts( 'story' );
+
+		$story['image'] = Photo::make( $this->site_string( 'story.image' ), $this->string( 'story.origin.image_alt' ) );
+
+		foreach ( array( 'milestones', 'changes' ) as $key ) {
+			$story[ $key ] = array_merge( (array) ( $story[ $key ] ?? array() ), array( 'items' => $this->story_items( $key ) ) );
+		}
+
+		$story['archive_url']  = $this->site_string( 'story.archive_url' );
+		$story['services_url'] = Urls::section( $this->lang, 'services' );
+		$story['team']         = $this->team();
+
+		return $story;
+	}
+
+	/**
+	 * A list of the about us page: the entries of site.json "story.{list}" joined
+	 * with their texts at "story.{list}.items.{id}".
+	 *
+	 * @param string $key List key (milestones, changes).
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function story_items( string $key ): array {
+		$items = array();
+
+		foreach ( $this->site_list( 'story.' . $key ) as $item ) {
+			$id    = (string) ( $item['id'] ?? '' );
+			$texts = Store::get( $this->strings, 'story.' . $key . '.items.' . $id );
+
+			if ( '' !== $id && is_array( $texts ) ) {
+				$items[] = array_merge( $texts, $item );
+			}
+		}
+
+		return $items;
 	}
 
 	/**

@@ -43,6 +43,97 @@
       "before": "Zerobits - We",
       "heart": "love",
       "after": "great solutions."
+    },
+    "more": "Unsere Geschichte seit 1998"
+  },
+  "story": {
+    "slug": "ueber-uns",
+    "meta_title": "Über uns - Von Shopsystemen zur KI-Automatisierung",
+    "meta_description": "Zerobits aus Koblenz: 2001 haben wir Shopsysteme für „das neue Medium“ Internet gebaut. Heute arbeiten wir vollständig an Automatisierung mit KI. Das ist dazwischen passiert.",
+    "name": "Über uns",
+    "title": {
+      "lead": "In die Zukunft.",
+      "accent": "Damals und heute."
+    },
+    "origin": {
+      "paragraphs": [
+        "2001 begrüßte zerobits.de seine Besucher „in der Welt des Internets“. Die Überschrift lautete: „Mit Zerobits in die Zukunft“.",
+        "Damals beschäftigten wir uns mit „dem neuen Medium“.",
+        "Seitdem hat sich vieles verändert. Das Versprechen aus der Überschrift ist geblieben."
+      ],
+      "image_alt": "Screenshot der Zerobits-Website von 2001: das Logo, ein Menü mit Home, Dienstleistungen, Projekte, Overclocking, Links und Kontakt und die Überschrift „Mit Zerobits in die Zukunft“",
+      "caption": "zerobits.de im Jahr 2001",
+      "archive": "In der Wayback Machine ansehen"
+    },
+    "milestones": {
+      "title": {
+        "lead": "Was seitdem",
+        "accent": "passiert ist"
+      },
+      "items": {
+        "start": {
+          "title": "Zerobits startet in Koblenz",
+          "text": "Websites, Skripte und Shopsysteme für Unternehmen aus der Region."
+        },
+        "website": {
+          "title": "Softwareentwicklung",
+          "text": "Zerobits betreibt mehrere Webshops für Kunden, entwickelt in PHP 3."
+        },
+        "products": {
+          "title": "Aus Software wird ein Produkt",
+          "text": "Ein Content-Management-System für die Automobilbranche: eine Codebasis, viele Kundenwebsites."
+        },
+        "cloud": {
+          "title": "Vom Serverschrank in die Cloud",
+          "text": "Der IT-Betrieb zieht von physischen Servern in die Cloud, auf drei Kontinenten."
+        },
+        "teams": {
+          "title": "Internationale Teams",
+          "text": "Produktentwicklung für Logistiksoftware mit mehr als 40 Menschen in drei Ländern."
+        },
+        "today": {
+          "title": "Zerobits ist zurück",
+          "text": "Die gesamte Erfahrung fließt jetzt in die Automatisierung mit KI."
+        }
+      }
+    },
+    "changes": {
+      "title": {
+        "lead": "Damals",
+        "accent": "und heute"
+      },
+      "then": "2001",
+      "now": "Heute",
+      "items": {
+        "medium": {
+          "topic": "Das neue Medium",
+          "then": "Das Internet war „das neue Medium“. Unsere Startseite begrüßte ihre Besucher in dieser neuen Welt.",
+          "now": "Das neue Medium heißt künstliche Intelligenz. Sie verändert die Arbeit so gründlich wie einst das Internet."
+        },
+        "product": {
+          "topic": "Was wir bauen",
+          "then": "Wir bauten Websites und Shopsysteme, die Unternehmen ins Netz brachten.",
+          "now": "Wir bauen Assistenten, Agenten und automatisierte Abläufe, die Ihrem Team wiederkehrende Arbeit abnehmen."
+        },
+        "craft": {
+          "topic": "Wie wir bauen",
+          "then": "Jedes Skript entstand in PHP 3, Zeile für Zeile von Hand.",
+          "now": "KI-gestützte Entwicklung ist unser Standard, vom Konzept bis zum Betrieb. Ein Beispiel ist diese Website: Der Code ist vollständig öffentlich.",
+          "link": "Quellcode auf GitHub ansehen"
+        }
+      }
+    },
+    "today": {
+      "title": {
+        "lead": "Heute:",
+        "accent": "Automatisierung mit KI"
+      },
+      "paragraphs": [
+        "Wir entwickeln Assistenten, Agenten und Workflows, die Ihrem Team Routinearbeit abnehmen und Ihre bestehenden Systeme miteinander verbinden.",
+        "Unser Grundsatz: KI gehört in den produktiven Betrieb und nicht in die Pilotphase. Deshalb sind Evaluierung, Leitplanken und Kostenkontrolle vom ersten Tag an Teil jeder Lösung. Und bei jeder wichtigen Entscheidung behält ein Mensch das letzte Wort.",
+        "Im KI-Zeitalter sind Wissen und Code günstig geworden. Schwierig bleiben die richtigen Entscheidungen: Welche Architektur trägt, welcher Anwendungsfall lohnt sich und wo bleibt menschliche Kontrolle unverzichtbar? Genau hier zahlen sich mehr als 25 Jahre Erfahrung aus."
+      ],
+      "cta": "Unsere Services ansehen"
     }
   },
   "blog": {

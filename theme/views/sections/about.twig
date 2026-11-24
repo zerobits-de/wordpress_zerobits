@@ -1,6 +1,7 @@
 {#
-  "Why choose us": centred paragraphs and the tagline on a fixed background photo (sections.css).
-  Params: about (texts "about")
+  "Why choose us": centred paragraphs, the tagline and the link to the about us page on a
+  fixed background photo (sections.css).
+  Params: about (texts "about" + url of the about us page)
 #}
 <section class="section section--dark about" id="about-us" aria-labelledby="about-title">
   <div class="photo-bg photo-bg--code" aria-hidden="true"></div>
@@ -10,5 +11,6 @@
       <p>{{ paragraph|e }}</p>
     {% endfor %}
     <p class="about__tagline">{{ about.tagline.before|e }} <span class="about__heart" role="img" aria-label="{{ about.tagline.heart|e('html_attr') }}">❤️</span> {{ about.tagline.after|e }}</p>
+    <p class="about__more"><a class="link-more" href="{{ about.url|esc_url }}">{{ about.more|e }} {{ icon('arrow-right') }}</a></p>
   </div>
 </section>

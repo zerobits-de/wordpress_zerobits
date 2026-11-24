@@ -12,7 +12,7 @@ ok()   { echo "ok    $1"; }
 
 for f in style.css functions.php index.php composer.json composer.lock theme.json \
          content/site.json content/en.json content/de.json \
-         templates/base.twig templates/home.twig templates/service.twig templates/project.twig templates/blog.twig templates/single.twig templates/legal.twig \
+         templates/base.twig templates/home.twig templates/service.twig templates/project.twig templates/blog.twig templates/single.twig templates/legal.twig templates/about.twig \
          templates/page.twig templates/404.twig views/partials/header.twig views/partials/footer.twig \
          views/components/lang-switch.twig assets/css/tokens.css assets/css/fonts.css assets/js/main.js \
          assets/images/logo.svg assets/images/favicon.png; do

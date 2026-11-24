@@ -176,6 +176,23 @@
     { "id": "hourly" },
     { "id": "fixed" }
   ],
+  "story": {
+    "image": "images/about/zerobits-2001.webp",
+    "archive_url": "https://web.archive.org/web/20010302133337/http://www.zerobits.de/",
+    "milestones": [
+      { "id": "start", "year": "1998" },
+      { "id": "website", "year": "2001" },
+      { "id": "products", "year": "2003–2009" },
+      { "id": "cloud", "year": "2009–2019" },
+      { "id": "teams", "year": "2019–2024" },
+      { "id": "today", "year": "2024" }
+    ],
+    "changes": [
+      { "id": "medium" },
+      { "id": "product" },
+      { "id": "craft" }
+    ]
+  },
   "team": {
     "image": "images/photos/oliver-kirst.webp"
   },

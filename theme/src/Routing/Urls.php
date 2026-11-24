@@ -163,6 +163,27 @@ final class Urls {
 	}
 
 	/**
+	 * The about us page of a language: /about-us/ or /{lang}/ueber-uns/, slug from
+	 * content/{lang}.json "story.slug".
+	 *
+	 * @param string $lang Language code.
+	 */
+	public static function about( string $lang ): string {
+		$slug = self::about_slug( $lang );
+
+		return '' !== $slug ? home_url( '/' . Languages::prefix( $lang ) . $slug . '/' ) : self::section( $lang, 'about-us' );
+	}
+
+	/**
+	 * Slug of the about us page in a language.
+	 *
+	 * @param string $lang Language code.
+	 */
+	public static function about_slug( string $lang ): string {
+		return sanitize_title( Store::text( $lang, 'story.slug' ) );
+	}
+
+	/**
 	 * Legal page of a language; the slug comes from content/{lang}.json.
 	 *
 	 * @param string $lang Language code.
@@ -199,6 +220,8 @@ final class Urls {
 				$post = get_queried_object();
 
 				return $post instanceof WP_Post && $lang === $request->lang ? self::post( $post ) : self::blog( $lang );
+			case Request::ABOUT:
+				return self::about( $lang );
 			case Request::LEGAL:
 				return self::legal( $lang, $request->page );
 			case Request::SERVICE:
@@ -217,7 +240,7 @@ final class Urls {
 
 	/**
 	 * Whether alternate() leads to the same page in another language (home, a service,
-	 * a project, legal pages, first blog page) rather than to a fallback such as the blog
+	 * a project, the about us page, legal pages, first blog page) rather than to a fallback such as the blog
 	 * of the other language.
 	 *
 	 * @param Request $request Current request.
@@ -227,6 +250,7 @@ final class Urls {
 			case Request::HOME:
 			case Request::SERVICE:
 			case Request::PROJECT:
+			case Request::ABOUT:
 			case Request::LEGAL:
 				return true;
 			case Request::BLOG:

@@ -29,7 +29,8 @@ Both language files have exactly the same keys. Change a text in both files.
 - Placeholders such as `{n}`, `{total}`, `{title}` are filled in by the templates; keep them.
 - Texts are plain text (no HTML). Only the legal pages are HTML files.
 
-Top-level keys: `meta` (title and description of the homepage), `nav`, `hero`, `about`, `blog`,
+Top-level keys: `meta` (title and description of the homepage), `nav`, `hero`, `about`, `story`
+(the about us page), `blog`,
 `services`, `tools`, `portfolio`, `pricing`, `team`, `contact`, `odoo`, `footer`, `legal`,
 `not_found`.
 
@@ -80,10 +81,23 @@ The page of a service can show more than its own text:
 - `"odoo": true` adds the Odoo partner section as the last row (texts `odoo`: `title`, `intro`,
   the titles of `work.items`; the partner logo is its illustration). Exactly one service has it.
 
+## About us page
+
+The page tells the story of Zerobits (`story` in the language files): `origin` is the text beside
+the screenshot of the 2001 website (`site.json` › `story.image`, linked to `story.archive_url`,
+its copy in the Wayback Machine), `milestones` the timeline,
+`changes` the then/now rows and `today` the closing section. The entries of the timeline and
+the rows are listed in `site.json` › `story.milestones` (`id`, `year`) and `story.changes` (`id`);
+their texts are under `story.milestones.items.{id}` (`title`, `text`) and
+`story.changes.items.{id}` (`topic`, `then`, `now`; with a `link`, the row ends with a link of that
+text to the source repository, `site.json` › `brand.source_url`). The homepage links to the page below the
+tagline of "Why choose us" (`about.more`).
+
 ## Pages and their addresses
 
 The address of a service is `/{services.slug}/{services.items.{id}.slug}/`, of a project
-`/{portfolio.slug}/{portfolio.items.{id}.slug}/`, of the legal pages `legal.{key}.slug`, each per
+`/{portfolio.slug}/{portfolio.items.{id}.slug}/`, of the about us page `/{story.slug}/`, of the
+legal pages `legal.{key}.slug`, each per
 language. Changing a slug changes the URL; no permalink flush is needed. The blog is always at
 `/blog/` and `/de/blog/`. `/{services.slug}/`, `/{portfolio.slug}/` and `/{odoo.slug}/` have no
 page: they redirect to the services and portfolio sections of the homepage and to the Odoo

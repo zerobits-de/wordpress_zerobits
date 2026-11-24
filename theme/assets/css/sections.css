@@ -60,6 +60,93 @@
 .about .container { position: relative; }
 .about__tagline { margin-top: 3.5rem; }
 .about__heart { margin-inline: 0.1em; }
+.about__more { margin-top: 1.5rem; }
+.about__more a { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
+.about__more a:hover { color: var(--color-on-dark-muted); }
+
+/* About us page. Its first section: the text beside the screenshot of the 2001 website. It fills
+   the window below the fixed header, like the hero; the content is centred vertically. */
+.story-origin {
+  display: grid;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  padding-block: 3rem;
+}
+.story-origin__inner { display: grid; align-items: center; gap: 2.5rem; }
+.story-origin__body > p + p { margin-top: 0.75em; }
+.story-origin__name { margin-bottom: 0.75rem; color: var(--color-primary); font-family: var(--font-display); font-weight: 600; }
+.story-origin__title { margin-bottom: 0.6em; }
+.story-origin__title .dual-title__lead, .story-origin__title .dual-title__accent { display: block; }
+.story-origin__figure { min-width: 0; }
+.story-origin__caption a { text-decoration: underline; text-underline-offset: 0.15em; }
+.browser-frame__link { display: block; }
+.story-origin__caption { margin-top: 0.75rem; color: var(--color-muted); font-size: var(--text-small); text-align: center; }
+@media (min-width: 64em) {
+  .story-origin__inner { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+}
+
+/* A screenshot in a simple browser window. */
+.browser-frame { overflow: hidden; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-media); box-shadow: var(--shadow-card); }
+.browser-frame::before {
+  content: "";
+  display: block;
+  height: 1.75rem;
+  background:
+    radial-gradient(circle at 1rem 50%, var(--color-nav) 0.3rem, transparent 0.34rem),
+    radial-gradient(circle at 2rem 50%, var(--color-nav) 0.3rem, transparent 0.34rem),
+    radial-gradient(circle at 3rem 50%, var(--color-nav) 0.3rem, transparent 0.34rem),
+    var(--color-bg-band);
+  border-bottom: 1px solid var(--color-border);
+}
+.browser-frame__image { display: block; width: 100%; height: auto; }
+
+/* Milestones. Small screens: a vertical line with a dot per entry. Large screens: a horizontal
+   timeline, the entries side by side below the line. */
+.timeline { border-left: 2px solid var(--color-border); }
+.timeline__item { position: relative; padding-left: clamp(1.5rem, 4vw, 2.5rem); }
+.timeline__item + .timeline__item { margin-top: 2rem; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  top: 0.35em;
+  left: -0.5rem;
+  box-sizing: border-box;
+  width: 0.875rem;
+  height: 0.875rem;
+  background: var(--color-primary);
+  border: 3px solid var(--color-bg-soft);
+  border-radius: 50%;
+}
+.timeline__year { color: var(--color-primary); font-family: var(--font-display); font-weight: 600; }
+.timeline__title { margin-block: 0.25rem 0.5rem; font-size: 1.125rem; font-weight: 600; overflow-wrap: break-word; hyphens: auto; }
+.timeline__text { font-size: var(--text-small); }
+@media (min-width: 64em) {
+  /* Three shared rows (year, title, text), so the titles and the texts of all entries start on one line each. */
+  .timeline { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); grid-template-rows: repeat(3, auto); border-left: 0; border-top: 2px solid var(--color-border); }
+  .timeline__item { display: grid; grid-row: 1 / span 3; grid-template-rows: subgrid; padding: 1.75rem 1.25rem 0 0; }
+  .timeline__item + .timeline__item { margin-top: 0; }
+  .timeline__item::before { top: -0.5rem; left: 0; }
+}
+
+/* Then and now: a row per topic, the two times side by side as paragraphs. */
+.then-now { max-width: 64rem; margin-inline: auto; }
+.then-now__item { display: grid; gap: 1.25rem 3.5rem; padding-block: clamp(2rem, 4vw, 3rem); }
+.then-now__item + .then-now__item { border-top: 1px solid var(--color-border); }
+.then-now__item:first-child { padding-top: 0; }
+.then-now__item:last-child { padding-bottom: 0; }
+.then-now__topic { font-size: var(--text-h2); font-weight: 600; overflow-wrap: break-word; hyphens: auto; }
+.then-now__label { margin-bottom: 0.5rem; color: var(--color-muted); font-family: var(--font-display); font-weight: 600; }
+.then-now__label--now { color: var(--color-primary); }
+.then-now__text { font-size: var(--text-h3); line-height: 1.45; }
+.then-now__link { margin-top: 0.75rem; }
+@media (min-width: 48em) {
+  .then-now__item { grid-template-columns: 1fr 1fr; }
+  .then-now__topic { grid-column: 1 / -1; }
+}
+
+.story-today__cta { margin-top: 2.5rem; }
+.story-today + .team { margin-top: clamp(5rem, 12vw, 9.5rem); }
 
 /* Blog teaser */
 .blog-teaser__all { margin-top: 2rem; text-align: center; }

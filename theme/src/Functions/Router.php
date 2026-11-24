@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace ZB\Theme\Functions;
 
 use ZB\Theme\Content\Store;
+use ZB\Theme\Controllers\AboutController;
 use ZB\Theme\Controllers\AbstractController;
 use ZB\Theme\Controllers\BlogController;
 use ZB\Theme\Controllers\HomeController;
@@ -59,7 +60,6 @@ final class Router implements Registrable {
 	 * path (regular expression, without language prefix) => section of the homepage.
 	 */
 	private const LEGACY_SECTIONS = array(
-		'ueber-uns'             => 'about-us',
 		'portfolio'             => 'portfolio',
 		'portfolio-details'     => 'portfolio',
 		'projects(?:/.*)?'      => 'portfolio',
@@ -144,6 +144,12 @@ final class Router implements Registrable {
 				if ( '' !== $slug ) {
 					$rules[ '^' . $prefix . $portfolio . '/' . $slug . '/?$' ] = 'index.php?zb_route=project&' . $vars . '&zb_page=' . $id;
 				}
+			}
+
+			$about = Urls::about_slug( $lang );
+
+			if ( '' !== $about ) {
+				$rules[ '^' . $prefix . $about . '/?$' ] = 'index.php?zb_route=about&' . $vars;
 			}
 
 			foreach ( self::legal_keys() as $key ) {
@@ -255,7 +261,7 @@ final class Router implements Registrable {
 			return;
 		}
 
-		if ( in_array( $route, array( Request::HOME, Request::LEGAL, Request::SERVICE, Request::PROJECT, ...self::PAGES ), true ) || ( '' === $route && $query->is_home() ) ) {
+		if ( in_array( $route, array( Request::HOME, Request::ABOUT, Request::LEGAL, Request::SERVICE, Request::PROJECT, ...self::PAGES ), true ) || ( '' === $route && $query->is_home() ) ) {
 			$query->set( 'posts_per_page', 1 );
 			$query->set( 'no_found_rows', true );
 		}
@@ -403,7 +409,8 @@ final class Router implements Registrable {
 	 *
 	 *   /de/{article}/           articles had no /blog/ segment and answered under both languages
 	 *   /impressum/, /de/impress/  legal pages answered under both language prefixes
-	 *   /ueber-uns/, /projects/…  pages that are sections of the homepage now
+	 *   /ueber-uns/              the about us page answered without the language prefix
+	 *   /projects/…              pages that are sections of the homepage now
 	 */
 	private function redirect_legacy(): void {
 		$path = Request::path();
@@ -430,6 +437,11 @@ final class Router implements Registrable {
 		// A page or legal slug of another language: /impressum/ -> /de/impressum/, /de/impress/ -> /de/impressum/.
 		foreach ( Languages::all() as $other ) {
 			$target = $explicit ? $lang : $other;
+
+			if ( Urls::about_slug( $other ) === $path ) {
+				wp_safe_redirect( Urls::about( $target ), 301 );
+				exit;
+			}
 
 			foreach ( self::legal_keys() as $key ) {
 				if ( Urls::legal_slug( $other, $key ) === $path ) {
@@ -499,6 +511,8 @@ final class Router implements Registrable {
 				return new ServiceController();
 			case Request::PROJECT:
 				return new ProjectController();
+			case Request::ABOUT:
+				return new AboutController();
 			case Request::BLOG:
 				return new BlogController();
 			case Request::POST:
