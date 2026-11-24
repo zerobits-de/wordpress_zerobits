@@ -4,6 +4,14 @@
   background: var(--color-dark);
   color: var(--color-footer);
 }
+/*
+  The chat button and the note beside it are fixed to the bottom of the window. The free
+  space below the footer content is as high as the button plus its distance to the edge,
+  above and below, so nothing stays hidden at the end of the page.
+*/
+.site-footer--chat {
+  padding-block-end: calc(var(--chat-button-size) + 2 * var(--chat-button-offset));
+}
 
 .site-footer__inner {
   display: grid;
