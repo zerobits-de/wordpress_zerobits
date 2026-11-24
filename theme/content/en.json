@@ -43,6 +43,97 @@
       "before": "Zerobits - We",
       "heart": "love",
       "after": "great solutions."
+    },
+    "more": "Our story since 1998"
+  },
+  "story": {
+    "slug": "about-us",
+    "meta_title": "About Us - From Shop Systems to AI Automation",
+    "meta_description": "Zerobits from Koblenz: in 2001 we built shop systems for “the new medium”, the internet. Today we work fully on automation with AI. This is what happened in between.",
+    "name": "About us",
+    "title": {
+      "lead": "Into the Future.",
+      "accent": "Then and Now."
+    },
+    "origin": {
+      "paragraphs": [
+        "In 2001 zerobits.de welcomed its visitors “to the world of the internet”. The headline read “Mit Zerobits in die Zukunft”: into the future with Zerobits.",
+        "Back then our work was all about “the new medium”.",
+        "A lot has changed since then. The promise in the headline has not."
+      ],
+      "image_alt": "Screenshot of the Zerobits website from 2001: the logo, a menu with Home, Dienstleistungen, Projekte, Overclocking, Links and Kontakt, and the headline “Mit Zerobits in die Zukunft”",
+      "caption": "zerobits.de in 2001",
+      "archive": "View in the Wayback Machine"
+    },
+    "milestones": {
+      "title": {
+        "lead": "What Happened",
+        "accent": "Since Then"
+      },
+      "items": {
+        "start": {
+          "title": "Zerobits starts in Koblenz",
+          "text": "Websites, scripts and shop systems for companies in the region."
+        },
+        "website": {
+          "title": "Software development",
+          "text": "Zerobits runs several web shops for customers, built in PHP 3."
+        },
+        "products": {
+          "title": "Software becomes a product",
+          "text": "A content management system for the automotive industry: one code base, many client websites."
+        },
+        "cloud": {
+          "title": "From server rack to cloud",
+          "text": "IT operations move from physical servers to the cloud, on three continents."
+        },
+        "teams": {
+          "title": "International teams",
+          "text": "Product development for logistics software with more than 40 people in three countries."
+        },
+        "today": {
+          "title": "Zerobits returns",
+          "text": "All of this experience now goes into automation with AI."
+        }
+      }
+    },
+    "changes": {
+      "title": {
+        "lead": "Then",
+        "accent": "and Now"
+      },
+      "then": "2001",
+      "now": "Today",
+      "items": {
+        "medium": {
+          "topic": "The new medium",
+          "then": "The internet was “the new medium”. Our homepage welcomed its visitors to this new world.",
+          "now": "The new medium is artificial intelligence. It is changing work as thoroughly as the internet once did."
+        },
+        "product": {
+          "topic": "What we build",
+          "then": "We built websites and shop systems that brought companies online.",
+          "now": "We build assistants, agents and automated workflows that take repetitive work off your team."
+        },
+        "craft": {
+          "topic": "How we build",
+          "then": "Every script was written in PHP 3, line by line.",
+          "now": "AI-assisted development is our standard practice, from the concept to operations. This website is an example: its code is fully public.",
+          "link": "View the source code on GitHub"
+        }
+      }
+    },
+    "today": {
+      "title": {
+        "lead": "Today:",
+        "accent": "Automation with AI"
+      },
+      "paragraphs": [
+        "We build assistants, agents and workflows that take routine work off your team and connect the systems you already use.",
+        "Our principle: AI belongs in production and not in a pilot. That is why evaluation, guardrails and cost control are part of every solution from day one. And wherever a decision really matters, a human keeps the final say.",
+        "In the age of AI, knowledge and code have become cheap. The hard part is making the right decisions: which architecture holds, which use case carries and where human oversight stays essential. That is where more than 25 years of experience pay off."
+      ],
+      "cta": "See what we do"
     }
   },
   "blog": {

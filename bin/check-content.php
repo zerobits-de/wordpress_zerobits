@@ -12,10 +12,12 @@
  *  - every image referenced in site.json exists in assets/
  *  - every legal page exists for every language, and the slugs are unique
  *  - every feature and social icon exists, also in the blocks of a service
+ *  - every milestone and then/now row of the about us page ("story" in site.json)
+ *    has texts in every language
  *  - every technology a service or a project lists ("tools") is an id of the
  *    list "tools" in site.json
- *  - the slugs of the services and projects (and of the former services,
- *    portfolio and Odoo pages, which redirect) are valid and unique
+ *  - the slugs of the services and projects, of the about us page (and of the
+ *    former services, portfolio and Odoo pages, which redirect) are valid and unique
  *
  * Exit code 1 on any problem.
  */
@@ -146,6 +148,25 @@ foreach ($lists as $section => $items) {
     }
 }
 
+// About us page: its milestones and then/now rows need texts.
+foreach (['milestones', 'changes'] as $list) {
+    foreach ((array) ($site['story'][$list] ?? []) as $i => $item) {
+        $id = is_array($item) ? ($item['id'] ?? '') : '';
+        if ('' === $id) {
+            $errors[] = "site.json: story.{$list}[{$i}] has no id";
+            continue;
+        }
+        if ('milestones' === $list && ! is_string($item['year'] ?? null)) {
+            $errors[] = "site.json: story.milestones[{$i}] has no year";
+        }
+        foreach ($strings as $lang => $data) {
+            if (! isset($data['story'][$list]['items'][$id])) {
+                $errors[] = "$lang: missing texts story.$list.items.$id (listed in site.json)";
+            }
+        }
+    }
+}
+
 // Features of the services and of their blocks: texts in every language, an existing icon.
 $check_features = static function (array $owner, string $where, array $path) use ($theme, $strings, &$errors): void {
     foreach ((array) ($owner['features'] ?? []) as $j => $feature) {
@@ -240,10 +261,10 @@ array_walk_recursive($site, static function ($value, $key) use ($theme, &$errors
 });
 
 // /{services.slug}/{slug of a service}/ and /{portfolio.slug}/{slug of a project}/ per language;
-// /{services.slug}/, /{portfolio.slug}/ and /{odoo.slug}/ redirect.
+// /{services.slug}/, /{portfolio.slug}/ and /{odoo.slug}/ redirect; /{story.slug}/ is the about us page.
 $bases = [];
 foreach ($strings as $lang => $data) {
-    foreach (['services', 'portfolio', 'odoo'] as $page) {
+    foreach (['services', 'portfolio', 'odoo', 'story'] as $page) {
         $slug = $data[$page]['slug'] ?? '';
         $full = ($lang === $default ? '' : "$lang/") . $slug;
         if (1 !== preg_match('/^[a-z0-9-]+$/', (string) $slug)) {

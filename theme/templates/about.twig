@@ -1,0 +1,97 @@
+{% extends 'base.twig' %}
+
+{#
+  About us (AboutController): Zerobits in 2001 beside a screenshot of the
+  website of that time (linked to its copy in the Wayback Machine), the milestones since as a horizontal timeline, a then/now comparison, what we
+  do today and the call to action.
+#}
+
+{% block content %}
+  <section class="section story-origin" aria-labelledby="story-title">
+    <div class="container story-origin__inner">
+      <div class="story-origin__body">
+        <p class="story-origin__name">{{ story.name|e }}</p>
+        {% include 'components/dual-title.twig' with { title: story.title, tag: 'h1', id: 'story-title', class: 'story-origin__title' } only %}
+        {% for paragraph in story.origin.paragraphs %}
+          <p>{{ paragraph|e }}</p>
+        {% endfor %}
+      </div>
+      {% if story.image %}
+        <figure class="story-origin__figure">
+          <div class="browser-frame">
+            {% if story.archive_url %}
+              <a class="browser-frame__link" href="{{ story.archive_url|esc_url }}" target="_blank" rel="noopener">
+                {% include 'components/image.twig' with { image: story.image, loading: 'eager', class: 'browser-frame__image' } only %}
+                <span class="sr-only">{{ story.origin.archive|e }} ({{ t.external|e }})</span>
+              </a>
+            {% else %}
+              {% include 'components/image.twig' with { image: story.image, loading: 'eager', class: 'browser-frame__image' } only %}
+            {% endif %}
+          </div>
+          <figcaption class="story-origin__caption">
+            {{ story.origin.caption|e }}
+            {% if story.archive_url %}
+              · <a href="{{ story.archive_url|esc_url }}" target="_blank" rel="noopener">{{ story.origin.archive|e }}<span class="sr-only"> ({{ t.external|e }})</span></a>
+            {% endif %}
+          </figcaption>
+        </figure>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section section--soft" aria-labelledby="milestones-title">
+    <div class="container">
+      <header class="section__head">
+        {% include 'components/dual-title.twig' with { title: story.milestones.title, id: 'milestones-title', class: 'section__title' } only %}
+      </header>
+      <ol class="timeline">
+        {% for item in story.milestones.items %}
+          <li class="timeline__item">
+            <p class="timeline__year">{{ item.year|e }}</p>
+            <h3 class="timeline__title">{{ item.title|e }}</h3>
+            <p class="timeline__text">{{ item.text|e }}</p>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="changes-title">
+    <div class="container">
+      <header class="section__head">
+        {% include 'components/dual-title.twig' with { title: story.changes.title, id: 'changes-title', class: 'section__title' } only %}
+      </header>
+      <ul class="then-now">
+        {% for item in story.changes.items %}
+          <li class="then-now__item">
+            <h3 class="then-now__topic">{{ item.topic|e }}</h3>
+            <div class="then-now__side">
+              <p class="then-now__label">{{ story.changes.then|e }}</p>
+              <p class="then-now__text">{{ item.then|e }}</p>
+            </div>
+            <div class="then-now__side">
+              <p class="then-now__label then-now__label--now">{{ story.changes.now|e }}</p>
+              <p class="then-now__text">{{ item.now|e }}</p>
+              {# An entry with a text "link" refers to the public repository of this website. #}
+              {% if item.link|default('') and brand.source_url %}
+                <p class="then-now__link"><a class="link-more" href="{{ brand.source_url|esc_url }}" target="_blank" rel="noopener">{{ item.link|e }} {{ icon('external') }}<span class="sr-only"> ({{ t.external|e }})</span></a></p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark story-today" aria-labelledby="today-title">
+    <div class="container container--text">
+      {% include 'components/dual-title.twig' with { title: story.today.title, id: 'today-title', class: 'section__title' } only %}
+      {% for paragraph in story.today.paragraphs %}
+        <p>{{ paragraph|e }}</p>
+      {% endfor %}
+      <p class="story-today__cta">{% include 'components/button.twig' with { label: story.today.cta, url: story.services_url } only %}</p>
+    </div>
+  </section>
+
+  {% include 'sections/team.twig' with { team: story.team, contact_url: contact_url } only %}
+{% endblock %}

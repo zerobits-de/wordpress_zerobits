@@ -27,6 +27,7 @@ use WP_Post;
  *   project  /portfolio/linguu/ /de/portfolio/linguu/ one project, slugs from content/{lang}.json
  *                                                 "portfolio.slug" and "portfolio.items.{id}.slug"
  *   portfolio /portfolio/     /de/portfolio/      no page: redirects to the section of the homepage
+ *   about    /about-us/       /de/ueber-uns/      slug from content/{lang}.json "story.slug"
  *   blog     /blog/           /de/blog/           (+ /page/N/)
  *   post     /blog/slug/      /de/blog/slug/      language = the article's language
  *   legal    /impress/        /de/impressum/      slugs from content/{lang}.json
@@ -41,6 +42,7 @@ final class Request {
 	public const ODOO      = 'odoo';
 	public const PROJECT   = 'project';
 	public const PORTFOLIO = 'portfolio';
+	public const ABOUT     = 'about';
 	public const BLOG      = 'blog';
 	public const POST      = 'post';
 	public const LEGAL     = 'legal';
@@ -123,6 +125,10 @@ final class Request {
 
 		if ( in_array( $route, Router::PAGES, true ) ) {
 			return new self( $route, $lang );
+		}
+
+		if ( self::ABOUT === $route ) {
+			return new self( self::ABOUT, $lang );
 		}
 
 		if ( self::BLOG === $route ) {

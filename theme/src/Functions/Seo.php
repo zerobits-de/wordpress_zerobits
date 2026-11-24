@@ -71,6 +71,8 @@ final class Seo implements Registrable {
 				return Store::text( $lang, 'services.items.' . $request->page . '.meta_title' ) . ' | ' . $brand;
 			case Request::PROJECT:
 				return Store::text( $lang, 'portfolio.items.' . $request->page . '.meta_title' ) . ' | ' . $brand;
+			case Request::ABOUT:
+				return Store::text( $lang, 'story.meta_title' ) . ' | ' . $brand;
 			case Request::BLOG:
 				$page = $request->paged > 1 ? ' - ' . strtr(
 					Store::text( $lang, 'blog.page' ),
@@ -153,6 +155,8 @@ final class Seo implements Registrable {
 				return Store::text( $request->lang, 'services.items.' . $request->page . '.meta_description' );
 			case Request::PROJECT:
 				return Store::text( $request->lang, 'portfolio.items.' . $request->page . '.meta_description' );
+			case Request::ABOUT:
+				return Store::text( $request->lang, 'story.meta_description' );
 			case Request::HOME:
 				return Store::text( $request->lang, 'meta.description' );
 			default:

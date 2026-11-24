@@ -4,7 +4,7 @@
 
 - A **custom WordPress theme** for Zerobits (`theme/`): a bilingual (EN default at `/`, DE at `/de/`)
   one-pager about AI, automation, cloud and hosting, with a page per service (the Odoo partner
-  section is part of the cloud page), a page per portfolio project and a blog. Location: Koblenz.
+  section is part of the cloud page), a page per portfolio project, an about us page and a blog. Location: Koblenz.
 - **Timber is mandatory.** Twig renders presentation (`templates/`, `views/`); PHP prepares data
   (`src/`). Do not put HTML in PHP and do not put business logic in Twig.
 - **All site texts live in the repo** (`theme/content/`); only blog articles live in WordPress.
