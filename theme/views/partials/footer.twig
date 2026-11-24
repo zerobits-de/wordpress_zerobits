@@ -1,5 +1,8 @@
-{# Dark site footer: logo, address, social profiles, legal links and the link to the source repository. #}
-<footer class="site-footer">
+{#
+  Dark site footer: logo, address, social profiles, legal links and the link to the source repository.
+  With the chat widget on, it ends with free space, so its content scrolls clear of the chat button.
+#}
+<footer class="site-footer{{ chat ? ' site-footer--chat' }}">
   <div class="container site-footer__inner">
     {% include 'components/logo.twig' with { brand: brand, url: home_url, class: 'site-footer__brand' } only %}
 
